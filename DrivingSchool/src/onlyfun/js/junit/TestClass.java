@@ -32,6 +32,6 @@ public class TestClass {
 
 	@Test
 	public void testGit(){
-		System.out.println("SUCCESS!");
+		System.out.println("SUCCESS!!!!");
 	}
 }
