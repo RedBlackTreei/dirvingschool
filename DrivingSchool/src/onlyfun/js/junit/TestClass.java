@@ -29,4 +29,9 @@ public class TestClass {
 	        SchemaExport export = new SchemaExport(configuration); 
 	        export.execute(true, true, false, true); 
 	}
+
+	@Test
+	public void testGit(){
+		System.out.println("SUCCESS!");
+	}
 }
