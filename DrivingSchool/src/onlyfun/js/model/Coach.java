@@ -11,7 +11,7 @@ public class Coach extends Person {
 	
 	private String teachSubject;//教授科目
 	private String stuNum;//学生数目
-	private boolean isStuFull;//是否招满
+	private Boolean stuFull = false;//是否招满
 	
 	public String getTeachSubject() {
 		return teachSubject;
@@ -25,10 +25,11 @@ public class Coach extends Person {
 	public void setStuNum(String stuNum) {
 		this.stuNum = stuNum;
 	}
-	public boolean isStuFull() {
-		return isStuFull;
+	public Boolean isStuFull() {
+		return stuFull;
 	}
-	public void setStuFull(boolean isStuFull) {
-		this.isStuFull = isStuFull;
+	public void setStuFull(Boolean stuFull) {
+		this.stuFull = stuFull;
 	}
+
 }

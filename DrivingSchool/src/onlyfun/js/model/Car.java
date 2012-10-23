@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Car {
 
-	private int id;
+	private long id;
 	private String plateNum;// 车牌号
 	private String type;// 型号
 	private String regDate; // 登记日期
@@ -15,11 +15,11 @@ public class Car {
 
 	@Id
 	@GeneratedValue
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

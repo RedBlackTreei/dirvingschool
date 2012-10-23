@@ -10,7 +10,7 @@ public class Student extends Person {
 	private String dateOfEntry;// 入学时间
 	private Coach coach; // 教练
 	private LocalOfSign localOfSign;// 报名点
-	private boolean isPayfee; // 是否付费
+	private Boolean isPayfee; // 是否付费
 	private double fee; // 费用
 	private String schoolTime; // 上课时间
 	private int finshedSub; // 完成科目
@@ -25,11 +25,11 @@ public class Student extends Person {
 		this.coach = coach;
 	}
 
-	public boolean isPayfee() {
+	public Boolean isPayfee() {
 		return isPayfee;
 	}
 
-	public void setPayfee(boolean isPayfee) {
+	public void setPayfee(Boolean isPayfee) {
 		this.isPayfee = isPayfee;
 	}
 

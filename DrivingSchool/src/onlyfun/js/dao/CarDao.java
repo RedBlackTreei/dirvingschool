@@ -36,7 +36,7 @@ public interface CarDao {
 	/*
 	 * 更新
 	 */
-	public void update(long carId);
+	public void update(Car car);
 	
 	/*
 	 * 添加
