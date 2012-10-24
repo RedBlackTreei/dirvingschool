@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import onlyfun.js.dao.CarDao;
 import onlyfun.js.model.Car;
 
+/**
+ * 车辆管理操作
+ */
 @Repository
 public class CarDaoImpl implements CarDao {
 	
@@ -22,17 +25,29 @@ public class CarDaoImpl implements CarDao {
 		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 	}
 
+	/**
+	 * 通过教练查找
+	 * @param coachId 所属教练id
+	 */
 	@Transactional
 	public List<Car> getCarByCoach(long coachId) {
 		return null;
 	}
 
+	/**
+	 * 通过车的id查找
+	 * @param carId 所要查询车辆id
+	 */
 	@Transactional
 	public Car getCarById(long carId) {
 		Car car = (Car)this.hibernateTemplate.get(Car.class, carId);
 		return car;
 	}
 
+	/**
+	 * 通过车型查找
+	 * @param type 车型
+	 */
 	@Transactional
 	public List<Car> getCarByType(String type) {
 		@SuppressWarnings("unchecked")
@@ -40,29 +55,49 @@ public class CarDaoImpl implements CarDao {
 		return cars;
 	}
 
+	/**
+	 * 通过车牌号码查找
+	 * @param plateNum车牌号码
+	 */
 	@Transactional
 	public Car getCarByPlateNum(String plateNum) {
 		Car car = (Car)this.hibernateTemplate.find("from Car c where c.plateNum = '"+plateNum+"'").get(0);
 		return car;
 	}
 
+	/**
+	 * 通过学生查找
+	 * @param stuId 使用本车学生的id
+	 */
 	@Transactional
 	public List<Car> getByStudent(long stuId) {
 		return null;
 	}
 
+	/**
+	 * 更新
+	 * @param car 所要更新车的实体类
+	 */
 	@Transactional
 	public void update(Car car) {
 		this.hibernateTemplate.update(car);
 		
 	}
 
+	/**
+	 * 添加
+	 * @param car 车的实例
+	 */
 	@Transactional
 	public void addCar(Car car) {
 		this.hibernateTemplate.save(car);
 		
 	}
-
+	
+	/**
+	 * 删除
+	 * @param carId 车的id
+	 */
 	@Transactional
 	public void deleteCar(long carId) {
 		Car car = this.getCarById(carId);
