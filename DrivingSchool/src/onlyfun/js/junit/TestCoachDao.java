@@ -43,7 +43,8 @@ public class TestCoachDao {
 	@Test
 	public void testUpdate(){
 		Coach coach = dao.getCoachById(1);
-		//coach.setStuNum(3);
+		coach.setStuNum(3);
+		dao.update(coach);
 	}
 	
 	@After
