@@ -4,7 +4,6 @@ package onlyfun.js.junit;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import onlyfun.js.dao.CarDao;
 import onlyfun.js.dao.CoachDao;
 import onlyfun.js.model.Coach;
 
