@@ -75,7 +75,7 @@ public class TestCarDao {
 	
 	@Test
 	public void testDelete(){
-		dao.deleteCar(3);
+		dao.deleteCarById(3);
 	}
 
 	@After

@@ -99,8 +99,14 @@ public class CarDaoImpl implements CarDao {
 	 * @param carId 车的id
 	 */
 	@Transactional
-	public void deleteCar(long carId) {
+	public void deleteCarById(long carId) {
 		Car car = this.getCarById(carId);
+		this.hibernateTemplate.delete(car);
+		
+	}
+
+	@Transactional
+	public void deleteCar(Car car) {
 		this.hibernateTemplate.delete(car);
 		
 	}

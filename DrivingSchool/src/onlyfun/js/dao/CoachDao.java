@@ -31,7 +31,12 @@ public interface CoachDao {
 	/**
 	 * 删除教练
 	 */
-	public void deleteCoach(long coachId);
+	public void deleteCoachById(long coachId);
+	
+	/**
+	 * 删除教练
+	 */
+	public void deleteCoach(Coach coach);
 	
 	/**
 	 * 添加教练

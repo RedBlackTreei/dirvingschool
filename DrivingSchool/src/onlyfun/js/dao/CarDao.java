@@ -51,8 +51,13 @@ public interface CarDao {
 	public void addCar(Car car);
 	
 	/**
-	 * 删除
+	 * 通过id删除
 	 * @param carId 车的id
 	 */
-	public void deleteCar(long carId);
+	public void deleteCarById(long carId);
+	
+	/**
+	 * 删除
+	 */
+	public void deleteCar(Car car);
 }

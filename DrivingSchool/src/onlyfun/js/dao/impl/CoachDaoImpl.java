@@ -9,9 +9,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import onlyfun.js.dao.CarDao;
 import onlyfun.js.dao.CoachDao;
-import onlyfun.js.model.Car;
 import onlyfun.js.model.Coach;
 
 /**
@@ -66,20 +64,30 @@ public class CoachDaoImpl implements CoachDao {
 	}
 
 	/**
-	 * 删除教练
-	 */
-	@Transactional
-	public void deleteCoach(long coachId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
 	 * 添加教练
 	 */
 	@Transactional
 	public void addCoach(Coach coach) {
-		// TODO Auto-generated method stub
+		this.hibernateTemplate.save(coach);
+		
+	}
+
+	/**
+	 * 删除教练
+	 */
+	@Transactional
+	public void deleteCoachById(long coachId) {
+		Coach coach = (Coach)this.hibernateTemplate.get(Coach.class, coachId);
+		this.hibernateTemplate.delete(coach);
+		
+	}
+
+	/**
+	 * 删除教练
+	 */
+	@Transactional
+	public void deleteCoach(Coach coach) {
+		this.hibernateTemplate.delete(coach);
 		
 	}
 }

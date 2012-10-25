@@ -47,6 +47,25 @@ public class TestCoachDao {
 		dao.update(coach);
 	}
 	
+	@Test
+	public void testDeleteById(){
+		dao.deleteCoachById(4);
+	}
+	
+	@Test
+	public void testAdd(){
+		Coach coach = new Coach();
+		coach.setName("比尔-盖茨");
+		coach.setAddress("纽约-曼哈顿-16号");
+		coach.setIdNum("341227198701282634");
+		coach.setPassword("123");
+		coach.setUsername("billgates");
+		coach.setSex(true);
+		coach.setStuFull(false);
+		coach.setTel("15280774223");
+		dao.addCoach(coach);
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 		context = null;
