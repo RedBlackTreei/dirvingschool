@@ -51,7 +51,6 @@ public class LocalOfSignDaoImpl implements LocalOfSignDao {
 	@Transactional
 	public void deleteLocal(LocalOfSign local) {
 		this.hibernateTemplate.delete(local);
-
 	}
 
 	@Transactional
