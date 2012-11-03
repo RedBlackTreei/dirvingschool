@@ -1,6 +1,7 @@
 package onlyfun.js.junit;
 
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static org.junit.Assert.*;
@@ -40,6 +41,21 @@ public class TestQuestionDao {
 	}
 	
 	@Test
+	public void testAddQuestion(){
+		Question q = new Question();
+		Set<QuestionItem> items = new HashSet<QuestionItem>();
+		QuestionItem i1 = new QuestionItem();
+		i1.setItem("是");
+		QuestionItem i2 = new QuestionItem();
+		i2.setItem("否");
+		items.add(i1);
+		items.add(i2);
+		q.setTitle("机动车驾驶人的驾驶证未随身携带的，可以驾驶机动车?");
+		q.setItems(items);
+		dao.addQuestion(q);
+	}
+	
+	@Test
 	public void testGetQuestionById(){
 		Question question = dao.getQuestionById(4);
 		assertEquals("驾驶机动车看到这种标志需要注意什么？", question.getTitle());
@@ -47,7 +63,15 @@ public class TestQuestionDao {
 	
 	@Test
 	public void testUpdate(){
-		
+		Question q = dao.getQuestionById(6);
+		q.setTitle("机动车驾驶人的驾驶证未随身携带的，可以驾驶机动车?");
+		dao.update(q);
+	}
+	
+	@Test
+	public void testDeleteQuestionById(){
+		Question q = dao.getQuestionById(5);
+		dao.deleteQuesion(q);
 	}
 
 	@After

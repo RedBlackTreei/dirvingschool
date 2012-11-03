@@ -145,7 +145,7 @@ public class TestUtil {
 	public void testAddStudyItems(){
 		transaction = session.beginTransaction();
 		StudyItems items = new StudyItems();
-		items.setClassHour("48");
+		items.setClassHour(48);
 		items.setItemName("项目1");
 		Coach c = (Coach)session.load(Coach.class, 1l);
 		Set<Coach> set = new HashSet<Coach>();

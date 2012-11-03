@@ -4,31 +4,36 @@ import java.util.List;
 
 import onlyfun.js.model.Student;
 
-/*
+/**
  * 学生管理操作
  */
 public interface StudentDao {
-	/*
+	/**
 	 * 获取学生列表
 	 */
 	public List<Student> getStudent();
 	
-	/*
+	/**
 	 * 通过Id获取学生信息
 	 */
 	public Student getStudentById(long stuId);
 	
-	/*
+	/**
 	 * 更新学生信息
 	 */
-	public void update(long stuId);
+	public void update(Student stu);
 	
-	/*
+	/**
 	 * 删除学生
 	 */
-	public void deleteStudent(long stuId);
+	public void deleteStudent(Student stu);
 	
-	/*
+	/**
+	 * 删除学生
+	 */
+	public void deleteStudentById(long stuId);
+	
+	/**
 	 * 添加学生
 	 */
 	public void addStudent(Student stu);

@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 public class StudyItems {
 	private Long id;
 	private String itemName;
-	private String classHour;
+	private int classHour;
 	private Set<Coach> coach = new HashSet<Coach>();
 
 	@Id
@@ -37,11 +37,11 @@ public class StudyItems {
 		this.itemName = itemName;
 	}
 
-	public String getClassHour() {
+	public int getClassHour() {
 		return classHour;
 	}
 
-	public void setClassHour(String classHour) {
+	public void setClassHour(int classHour) {
 		this.classHour = classHour;
 	}
 

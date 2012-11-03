@@ -4,31 +4,36 @@ import java.util.List;
 
 import onlyfun.js.model.Stock;
 
-/*
+/**
  * 库存管理
  */
 public interface StockDao {
-	/*
+	/**
 	 * 获取所有库存物品
 	 */
 	public List<Stock> getStock();
-	
-	/*
+
+	/**
 	 * 通过id获取库存物品
 	 */
 	public Stock getStockById(long id);
-	
-	/*
+
+	/**
 	 * 更新库存物品
 	 */
-	public void update(long stockId);
-	
-	/*
+	public void update(Stock stock);
+
+	/**
 	 * 删除库存物品
 	 */
-	public void deleteStock(long stockId);
-	
-	/*
+	public void deleteStockById(long stockId);
+
+	/**
+	 * 删除库存物品
+	 */
+	public void deleteStock(Stock stock);
+
+	/**
 	 * 添加库存物品
 	 */
 	public void addStock(Stock stock);
