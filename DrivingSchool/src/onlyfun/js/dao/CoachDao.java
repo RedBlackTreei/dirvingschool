@@ -14,6 +14,11 @@ public interface CoachDao {
 	public List<Coach> getCoach();
 	
 	/**
+	 * 通过username获取教练信息
+	 */
+	public Coach getCoachByUsername(String username);
+	
+	/**
 	 * 通过Id获取教练信息
 	 */
 	public Coach getCoachById(long coachId);

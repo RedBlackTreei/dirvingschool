@@ -90,4 +90,11 @@ public class CoachDaoImpl implements CoachDao {
 		this.hibernateTemplate.delete(coach);
 		
 	}
+
+	@Transactional
+	public Coach getCoachByUsername(String username) {
+		@SuppressWarnings("unchecked")
+		List<Coach> coach = this.hibernateTemplate.find("from Coach c where c.username='"+username+"'");
+		return (coach.size()==0||coach==null)?null:coach.get(0);
+	}
 }

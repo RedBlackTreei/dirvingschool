@@ -14,6 +14,10 @@ public interface StudentDao {
 	public List<Student> getStudent();
 	
 	/**
+	 * 通过username获取学生信息
+	 */
+	public Student getStuByUsername(String username);
+	/**
 	 * 通过Id获取学生信息
 	 */
 	public Student getStudentById(long stuId);

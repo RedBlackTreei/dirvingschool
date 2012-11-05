@@ -1,4 +1,4 @@
-package onlyfun.js.junit;
+package onlyfun.js.junit.dao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

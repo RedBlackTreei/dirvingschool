@@ -14,18 +14,18 @@ import onlyfun.js.model.Student;
 
 /**
  * @author ji
- *
+ * 
  */
 @Repository
 public class StudentDaoImpl implements StudentDao {
 
 	private HibernateTemplate hibernateTemplate;
-	
+
 	@Resource
-	public void setSessionFactory(SessionFactory sessionFactory){
+	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 	}
-	
+
 	@Transactional
 	public List<Student> getStudent() {
 		@SuppressWarnings("unchecked")
@@ -35,7 +35,8 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Transactional
 	public Student getStudentById(long stuId) {
-		Student stu = (Student)this.hibernateTemplate.get(Student.class, stuId);
+		Student stu = (Student) this.hibernateTemplate
+				.get(Student.class, stuId);
 		return stu;
 	}
 
@@ -48,16 +49,25 @@ public class StudentDaoImpl implements StudentDao {
 	public void deleteStudent(Student stu) {
 		this.hibernateTemplate.delete(stu);
 	}
-	
+
 	@Transactional
-	public void deleteStudentById(long stuId){
-		Student stu = (Student)this.hibernateTemplate.get(Student.class, stuId);
+	public void deleteStudentById(long stuId) {
+		Student stu = (Student) this.hibernateTemplate
+				.get(Student.class, stuId);
 		this.hibernateTemplate.delete(stu);
 	}
 
 	@Transactional
 	public void addStudent(Student stu) {
 		this.hibernateTemplate.save(stu);
+	}
+
+	@Transactional
+	public Student getStuByUsername(String username) {
+		@SuppressWarnings("unchecked")
+		List<Student> stu = this.hibernateTemplate
+				.find("from Student stu where stu.username='" + username + "'");
+		return (stu.size() == 0 || stu.get(0) == null) ? null : stu.get(0);
 	}
 
 }

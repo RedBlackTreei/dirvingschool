@@ -1,4 +1,4 @@
-package onlyfun.js.junit;
+package onlyfun.js.junit.dao;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;

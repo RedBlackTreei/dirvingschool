@@ -1,7 +1,7 @@
 /**
  * 
  */
-package onlyfun.js.junit;
+package onlyfun.js.junit.dao;
 
 import static org.junit.Assert.*;
 

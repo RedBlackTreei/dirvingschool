@@ -27,6 +27,7 @@ public class Person {
 	private String username;
 	private String password;
 
+	@Column(name="username",unique=true,nullable=false)
 	public String getUsername() {
 		return username;
 	}

@@ -1,4 +1,4 @@
-package onlyfun.js.junit;
+package onlyfun.js.junit.dao;
 
 
 import java.text.SimpleDateFormat;
@@ -36,6 +36,15 @@ public class TestCoachDao {
 	@Test
 	public void testGetCoachById(){
 		Coach coach = dao.getCoachById(1);
+			System.out.println(coach.getName());
+	}
+	
+	@Test
+	public void testGetCoachByUsername(){
+		Coach coach = dao.getCoachByUsername("jishen21");
+		if(coach==null)
+			System.out.println("不存在此用戶！");
+		else
 			System.out.println(coach.getName());
 	}
 	
