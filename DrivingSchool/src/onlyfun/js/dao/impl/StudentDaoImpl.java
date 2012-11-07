@@ -70,4 +70,17 @@ public class StudentDaoImpl implements StudentDao {
 		return (stu.size() == 0 || stu.get(0) == null) ? null : stu.get(0);
 	}
 
+	@Transactional
+	public boolean isExist(String username) {
+		@SuppressWarnings("unchecked")
+		List<String> stu = this.hibernateTemplate.find("select stu.username from Student stu where stu.username='" + username + "'");
+		return (stu.size() != 0 || stu.get(0) != null);
+	}
+
+	@Transactional
+	public boolean login(String username, String password) {
+		List<Student> stu = this.hibernateTemplate.find("from", values)
+		return false;
+	}
+
 }

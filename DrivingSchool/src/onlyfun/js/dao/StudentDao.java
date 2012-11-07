@@ -41,4 +41,14 @@ public interface StudentDao {
 	 * 添加学生
 	 */
 	public void addStudent(Student stu);
+	
+	/**
+	 * 是否存在该学生
+	 */
+	public boolean isExist(String username);
+	
+	/**
+	 * 登录
+	 */
+	public boolean login(String username,String password);
 }

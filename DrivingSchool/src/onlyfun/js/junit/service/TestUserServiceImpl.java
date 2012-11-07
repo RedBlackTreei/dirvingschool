@@ -44,6 +44,7 @@ public class TestUserServiceImpl {
 	@Test
 	public void testLogin(){
 		String username = "admin";
+		String password = "101";
 		Person student = (Student)stuDao.getStuByUsername(username);
 		Person coach = (Coach)coachDao.getCoachByUsername(username);
 		Person person = (Person)personDao.getPersonByUsername(username);
@@ -52,14 +53,17 @@ public class TestUserServiceImpl {
 		}
 		if(student!=null){
 			System.out.println("学生-->"+student.getName());
+			System.out.println(student.getPassword().equals(password)?"登录成功！":"密码错误");
 			return;
 		}
 		if(coach!=null){
 			System.out.println("教练-->"+coach.getName());
+			System.out.println(coach.getPassword().equals(password)?"登录成功！":"密码错误");
 			return;
 		}
 		if(person!=null){
 			System.out.println("管理员-->"+person.getName());
+			System.out.println(person.getPassword().equals(password)?"登录成功！":"密码错误");
 			return;
 		}
 	}
