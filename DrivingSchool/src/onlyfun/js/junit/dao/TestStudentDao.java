@@ -88,5 +88,10 @@ public class TestStudentDao {
 		stu.setSchoolTime("8");
 		dao.addStudent(stu);
 	}
+	
+	@Test
+	public void login(){
+		System.out.println(dao.login("admin", "101"));
+	}
 
 }
