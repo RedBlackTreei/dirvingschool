@@ -12,4 +12,7 @@ public interface PersonDao {
 	public Person getPersonById(long id);
 	public List<Person> getPerson();
 	public void update(Person person);
+	public void addPerson(Person person);
+	public boolean isExist(String username);
+	public boolean login(String username,String password);
 }

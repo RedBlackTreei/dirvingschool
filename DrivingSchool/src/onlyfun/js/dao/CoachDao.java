@@ -47,4 +47,14 @@ public interface CoachDao {
 	 * 添加教练
 	 */
 	public void addCoach(Coach coach);
+	
+	/**
+	 * 检测用户名是否存在
+	 */
+	public boolean isExist(String username);
+	
+	/**
+	 * 登录
+	 */
+	public boolean login(String username,String password);
 }

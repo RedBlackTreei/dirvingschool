@@ -97,4 +97,22 @@ public class CoachDaoImpl implements CoachDao {
 		List<Coach> coach = this.hibernateTemplate.find("from Coach c where c.username='"+username+"'");
 		return (coach.size()==0||coach==null)?null:coach.get(0);
 	}
+
+	@Transactional
+	public boolean isExist(String username) {
+		@SuppressWarnings("unchecked")
+		List<String> coach = this.hibernateTemplate
+				.find("select coach.username from Coach coach where coach.username='"
+						+ username + "'");
+		return (coach.size() != 0);
+	}
+
+	@Transactional
+	public boolean login(String username, String password) {
+		String sql = "from Coach coach where coach.username=? and coach.password=?";
+		String[] values = new String[] { username, password };
+		@SuppressWarnings("unchecked")
+		List<Coach> coach = this.hibernateTemplate.find(sql, values);
+		return (coach.size() != 0);
+	}
 }
