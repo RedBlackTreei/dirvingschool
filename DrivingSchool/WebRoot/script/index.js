@@ -1,83 +1,120 @@
 Ext.onReady(function() {
 
-    var store = Ext.create('Ext.data.TreeStore', {
-        root: {
-            expanded: true,
-            children: [{
-                text: "学员管理",
-                leaf: false,
-                expanded: true,
-                children: [{
-                    text: '学员信息',
-                    leaf: true
-                }, {
-                    text: '学员操作',
-                    leaf: true
-                }]
-            }, {
-                text: "教练管理",
-                expanded: true,
-                children: [{
-                    text: '教练信息',
-                    leaf: true
-                }, {
-                    text: '添加教练',
-                    leaf: true
-                }]
-            }, {
-                text: "车辆管理",
-                leaf: true
-            }, {
-                text: '新闻管理',
-                leaf: true
-            }, {
-                text: '考试管理',
-                leaf: true
-            }]
-        }
-    });
+	var store = Ext.create('Ext.data.TreeStore', {
+		root : {
+			expanded : true,
+			children : [ {
+				text:'个人信息管理',
+				leaf:true
+			},{
+				text : "学员管理",
+				leaf : false,
+				expanded : true,
+				children : [ {
+					text : '学员信息',
+					url : 'login.jsp',
+					leaf : true
+				}, {
+					text : '学员操作',
+					leaf : true
+				} ]
+			}, {
+				text : "教练管理",
+				expanded : true,
+				children : [ {
+					text : '教练信息',
+					leaf : true
+				}, {
+					text : '添加教练',
+					leaf : true
+				} ]
+			}, {
+				text : "车辆管理",
+				leaf : true
+			}, {
+				text : '新闻管理',
+				leaf : true
+			}, {
+				text : '考试管理',
+				leaf : true
+			} ]
+		}
+	});
 
-    var treePanel = Ext.create('Ext.tree.Panel', {
-        layout:'fit',
-        store: store,
-        rootVisible: false
-    });
+	var treePanel = Ext.create('Ext.tree.Panel', {
+		// layout: 'anchor',
+		region : 'west',
+		layout : {
+			anchor : '100%,100%'
+		},
+		store : store,
+		collapsible : true,
+		title : '导航',
+		width : 200,
+		border : false,
+		rootVisible : false,
+		// 树的监听事件
+		listeners : {
+			/*
+			 * this : Ext.view.View 
+			 * record : Ext.data.Model 
+			 * item : HTMLElement
+			 * index : Number 
+			 * e: Ext.EventObject 
+			 * options : Object
+			 */
+			itemclick : function(tree, record, item, index, e, options) {
+				var nodeText = record.data.text, tabPanel = viewport.items
+						.get(4), tabBar = tabPanel.getTabBar(), tabIndex;
+				for ( var i = 0; i < tabBar.items.length; i++) {
+					if (tabBar.items.get(i).getText() === nodeText) {
+						tabIndex = i;
+					}
+				}
 
-    Ext.create('Ext.container.Viewport', {
-        layout: 'border',
-        items: [{
-            region: 'north',
-            html: '<h1 class="x-panel-header">武夷驾校</h1>',
-            height: 100,
-            border: false,
-            margins: '0 0 5 0'
-        }, {
-            region: 'west',
-            collapsible: true,
-            title: '导航',
-            width: 200,
-            items: [{
-                xtype: 'treepanel',
-                width:200,
-                store: store,
-                rootVisible: false
-            }]
-            // could use a TreePanel or AccordionLayout for navigational items
-        }, {
-            region: 'south',
-            html: 'copyright@js,2012-2020',
-            split: true,
-            height: 100
-        }, {
-            region: 'center',
-            xtype: 'tabpanel',
-            // TabPanel itself has no title
-            activeTab: 0,
-            // First tab active by default
-            items: {
-                title: 'Default Tab',
-                html: 'The first tab\'s content. Others may be added dynamically'
-            }
-        }]
-    });
+				// 判断tabIndex是否赋值且当前节点是否为叶子节点
+				if (Ext.isEmpty(tabIndex) && record.raw.leaf) {
+					//var id = record.attributes.id;
+					var fname = record.data.fname;
+					var url = record.raw.url;
+					tabPanel.add({
+						title : record.data.text,
+						bodyPadding : 10,
+						html : "<iframe style='width:100%;height:100%;' name="
+								+ fname + " frameborder='0' src='" + url
+								+ "'></frame>"
+					});
+					tabIndex = tabPanel.items.length - 1;
+				}
+				tabPanel.setActiveTab(tabIndex);
+			}
+		}
+	});
+
+	var viewport = Ext.create('Ext.container.Viewport', {
+		layout : 'border',
+		baseCls : 'x-panel',
+		items : [ {
+			region : 'north',
+			html : '<h1 class="x-panel-header">武夷驾校</h1>',
+			height : 100,
+			border : false,
+			margins : '0 0 5 0'
+		}, treePanel, {
+			region : 'south',
+			html : 'copyright@js,2012-2020',
+			split : true,
+			height : 100
+		}, {
+			region : 'center',
+			xtype : 'tabpanel',
+			// TabPanel itself has no title
+			activeTab : 0,
+			// First tab active by default
+			items : {
+				title : '首页',
+				html : '欢迎使用驾校资源管理系统...'
+			}
+		} ]
+	});
 });
