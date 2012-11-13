@@ -1,64 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE struts PUBLIC  
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
-    "http://struts.apache.org/dtds/struts-2.0.dtd">  
-  
-<struts>  
-   
-    <package name="default" extends="struts-default">
-    	<action name="loginAction" class="userAction" method="login">
-    		<result>/index.jsp</result>
-    		<result name="input">/login.jsp</result>
-    	</action>
-        <!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->  
-        <!--<action name="loginUserAction" class="userAction" method="login">  
-            <result type="redirectAction" name="success">
-            	<param name="actionName">listBookmarkAction</param>
-            </result> 
-            <result name="input">/login.jsp</result> 
-            <result name="error">/index.jsp</result>
-        </action>
-        
-        <action name="registerUserAction" class="userAction" method="register">
-        	<result name="success">/success.jsp</result>
-        	<result name="input">/register.jsp</result> 
-        	<result name="error">/error.jsp</result>
-        </action>
-        
-        <action name="loginOffAction" class="userAction" method="loginOff">
-        	<result>/login.jsp</result>
-        </action>
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
 
-    	<action name="listBookmarkAction" class="bookmarkAction" method="list">
-        	<result name="success">/showBookmark.jsp</result>
-        	<result name="input">/login.jsp</result> 
-        	<result name="error">/error.jsp</result>
-        	
-        </action>
-        
-        <action name="addBookmarkAction" class="bookmarkAction" method="add">
-        	<result type="redirectAction" name="success">
-            	<param name="actionName">listBookmarkAction</param>
-            </result> 
-            <result name="input">/login.jsp</result> 
-        	<result name="error">/error.jsp</result>
-        </action>
-        
-        <action name="deleteBookmarkAction" class="bookmarkAction" method="delete">
-        	<result type="redirectAction" name="success">
-            	<param name="actionName">listBookmarkAction</param>
-            </result>
-            <result name="input">/login.jsp</result> 
-            <result name="error">/error.jsp</result>
-        </action>
-        
-        <action name="updateBookmarkAction" class="bookmarkAction" method="update">
-        	<result type="redirectAction" name="success">
-            	<param name="actionName">listBookmarkAction</param>
-            </result>
-            <result name="input">/login.jsp</result> 
-            <result name="error">/error.jsp</result>
-        </action>
-    --></package>
-  
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<package name="default" extends="json-default">
+		<action name="loginAction" class="userAction" method="login">
+			<result>/index.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="getNewsAction" class="newsAction" method="getNewsList">
+			<result name="success" type="json"/>
+		</action>
+		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->
+		<!--<action name="loginUserAction" class="userAction" method="login"> <result 
+			type="redirectAction" name="success"> <param name="actionName">listBookmarkAction</param> 
+			</result> <result name="input">/login.jsp</result> <result name="error">/index.jsp</result> 
+			</action> <action name="registerUserAction" class="userAction" method="register"> 
+			<result name="success">/success.jsp</result> <result name="input">/register.jsp</result> 
+			<result name="error">/error.jsp</result> </action> <action name="loginOffAction" 
+			class="userAction" method="loginOff"> <result>/login.jsp</result> </action> 
+			<action name="listBookmarkAction" class="bookmarkAction" method="list"> <result 
+			name="success">/showBookmark.jsp</result> <result name="input">/login.jsp</result> 
+			<result name="error">/error.jsp</result> </action> <action name="addBookmarkAction" 
+			class="bookmarkAction" method="add"> <result type="redirectAction" name="success"> 
+			<param name="actionName">listBookmarkAction</param> </result> <result name="input">/login.jsp</result> 
+			<result name="error">/error.jsp</result> </action> <action name="deleteBookmarkAction" 
+			class="bookmarkAction" method="delete"> <result type="redirectAction" name="success"> 
+			<param name="actionName">listBookmarkAction</param> </result> <result name="input">/login.jsp</result> 
+			<result name="error">/error.jsp</result> </action> <action name="updateBookmarkAction" 
+			class="bookmarkAction" method="update"> <result type="redirectAction" name="success"> 
+			<param name="actionName">listBookmarkAction</param> </result> <result name="input">/login.jsp</result> 
+			<result name="error">/error.jsp</result> </action> -->
+	</package>
+
 </struts> 
