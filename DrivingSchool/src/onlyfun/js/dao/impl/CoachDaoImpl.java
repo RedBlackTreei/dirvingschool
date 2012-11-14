@@ -17,11 +17,11 @@ import onlyfun.js.model.Coach;
  */
 @Repository
 public class CoachDaoImpl implements CoachDao {
-	
+
 	private HibernateTemplate hibernateTemplate;
 
 	@Resource
-	public void setSessionFactory(SessionFactory sessionFactory){
+	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 	}
 
@@ -40,7 +40,7 @@ public class CoachDaoImpl implements CoachDao {
 	 */
 	@Transactional
 	public Coach getCoachById(long coachId) {
-		Coach coach = (Coach)this.hibernateTemplate.get(Coach.class, coachId);
+		Coach coach = (Coach) this.hibernateTemplate.get(Coach.class, coachId);
 		return coach;
 	}
 
@@ -59,8 +59,7 @@ public class CoachDaoImpl implements CoachDao {
 	@Transactional
 	public void update(Coach coach) {
 		this.hibernateTemplate.update(coach);
-		
-		
+
 	}
 
 	/**
@@ -69,7 +68,7 @@ public class CoachDaoImpl implements CoachDao {
 	@Transactional
 	public void addCoach(Coach coach) {
 		this.hibernateTemplate.save(coach);
-		
+
 	}
 
 	/**
@@ -77,9 +76,9 @@ public class CoachDaoImpl implements CoachDao {
 	 */
 	@Transactional
 	public void deleteCoachById(long coachId) {
-		Coach coach = (Coach)this.hibernateTemplate.get(Coach.class, coachId);
+		Coach coach = (Coach) this.hibernateTemplate.get(Coach.class, coachId);
 		this.hibernateTemplate.delete(coach);
-		
+
 	}
 
 	/**
@@ -88,14 +87,15 @@ public class CoachDaoImpl implements CoachDao {
 	@Transactional
 	public void deleteCoach(Coach coach) {
 		this.hibernateTemplate.delete(coach);
-		
+
 	}
 
 	@Transactional
 	public Coach getCoachByUsername(String username) {
 		@SuppressWarnings("unchecked")
-		List<Coach> coach = this.hibernateTemplate.find("from Coach c where c.username='"+username+"'");
-		return (coach.size()==0||coach==null)?null:coach.get(0);
+		List<Coach> coach = this.hibernateTemplate
+				.find("from Coach c where c.username='" + username + "'");
+		return (coach.size() == 0 || coach == null) ? null : coach.get(0);
 	}
 
 	@Transactional

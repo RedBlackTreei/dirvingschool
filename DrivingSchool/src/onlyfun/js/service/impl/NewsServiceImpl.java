@@ -13,7 +13,7 @@ import onlyfun.js.service.NewsService;
 public class NewsServiceImpl implements NewsService {
 
 	private NewsDao newsDao;
-	
+
 	public List<News> getNewsList() {
 		return newsDao.getNews();
 	}
@@ -34,7 +34,7 @@ public class NewsServiceImpl implements NewsService {
 	public News getNews(long id) {
 		return newsDao.getNewsById(id);
 	}
-	
+
 	public void updateNews(News news) {
 		newsDao.update(news);
 	}
@@ -42,7 +42,7 @@ public class NewsServiceImpl implements NewsService {
 	public NewsDao getNewsDao() {
 		return newsDao;
 	}
-	
+
 	@Resource
 	public void setNewsDao(NewsDao newsDao) {
 		this.newsDao = newsDao;

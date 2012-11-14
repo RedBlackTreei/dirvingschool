@@ -21,10 +21,10 @@ public class NewsDaoImpl implements NewsDao {
 	private HibernateTemplate hibernateTemplate;
 
 	@Resource
-	public void setSessionFactory(SessionFactory sessionFactory){
+	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 	}
-	
+
 	@Transactional
 	public List<News> getNews() {
 		@SuppressWarnings("unchecked")
@@ -34,7 +34,7 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Transactional
 	public News getNewsById(long id) {
-		News news = (News)this.hibernateTemplate.get(News.class, id);
+		News news = (News) this.hibernateTemplate.get(News.class, id);
 		return news;
 	}
 

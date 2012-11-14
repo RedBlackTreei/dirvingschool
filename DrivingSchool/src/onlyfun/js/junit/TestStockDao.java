@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author administrator
- *
+ * 
  */
 public class TestStockDao {
 
@@ -35,7 +35,6 @@ public class TestStockDao {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		dao = (StockDao) context.getBean("stockDaoImpl");
 	}
-
 
 	/**
 	 * @throws java.lang.Exception
@@ -58,7 +57,8 @@ public class TestStockDao {
 	}
 
 	/**
-	 * Test method for {@link onlyfun.js.dao.impl.StockDaoImpl#getStockById(long)}.
+	 * Test method for
+	 * {@link onlyfun.js.dao.impl.StockDaoImpl#getStockById(long)}.
 	 */
 	@Test
 	public void testGetStockById() {
@@ -67,7 +67,8 @@ public class TestStockDao {
 	}
 
 	/**
-	 * Test method for {@link onlyfun.js.dao.impl.StockDaoImpl#update(onlyfun.js.model.Stock)}.
+	 * Test method for
+	 * {@link onlyfun.js.dao.impl.StockDaoImpl#update(onlyfun.js.model.Stock)}.
 	 */
 	@Test
 	public void testUpdate() {
@@ -77,7 +78,8 @@ public class TestStockDao {
 	}
 
 	/**
-	 * Test method for {@link onlyfun.js.dao.impl.StockDaoImpl#deleteStockById(long)}.
+	 * Test method for
+	 * {@link onlyfun.js.dao.impl.StockDaoImpl#deleteStockById(long)}.
 	 */
 	@Test
 	public void testDeleteStockById() {
@@ -85,7 +87,9 @@ public class TestStockDao {
 	}
 
 	/**
-	 * Test method for {@link onlyfun.js.dao.impl.StockDaoImpl#deleteStock(onlyfun.js.model.Stock)}.
+	 * Test method for
+	 * {@link onlyfun.js.dao.impl.StockDaoImpl#deleteStock(onlyfun.js.model.Stock)}
+	 * .
 	 */
 	@Test
 	public void testDeleteStock() {
@@ -94,7 +98,9 @@ public class TestStockDao {
 	}
 
 	/**
-	 * Test method for {@link onlyfun.js.dao.impl.StockDaoImpl#addStock(onlyfun.js.model.Stock)}.
+	 * Test method for
+	 * {@link onlyfun.js.dao.impl.StockDaoImpl#addStock(onlyfun.js.model.Stock)}
+	 * .
 	 */
 	@Test
 	public void testAddStock() {

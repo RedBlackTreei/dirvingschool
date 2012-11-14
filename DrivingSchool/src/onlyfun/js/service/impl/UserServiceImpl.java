@@ -46,28 +46,28 @@ public class UserServiceImpl implements UserService {
 		this.personDao = personDao;
 	}
 
-	public boolean login(String username, String password,String type) {
-		if(type=="student")
+	public boolean login(String username, String password, String type) {
+		if (type == "student")
 			return stuDao.login(username, password);
-		else if(type=="coach")
+		else if (type == "coach")
 			return coachDao.login(username, password);
 		else
 			return personDao.login(username, password);
 	}
 
-	public void setInfo(Object obj,String type) {
-		if(type=="student")
-			stuDao.update((Student)obj);
-		else if(type=="coach")
-			coachDao.update((Coach)obj);
+	public void setInfo(Object obj, String type) {
+		if (type == "student")
+			stuDao.update((Student) obj);
+		else if (type == "coach")
+			coachDao.update((Coach) obj);
 		else
-			personDao.update((Person)obj);
+			personDao.update((Person) obj);
 	}
 
-	public Person getInfo(String username,String type) {
-		if(type=="student")
+	public Person getInfo(String username, String type) {
+		if (type == "student")
 			return stuDao.getStuByUsername(username);
-		else if(type=="coach")
+		else if (type == "coach")
 			return coachDao.getCoachByUsername(username);
 		else
 			return personDao.getPersonByUsername(username);
@@ -75,13 +75,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addUser(Object obj, String type) {
-		if(type=="student")
-			stuDao.addStudent((Student)obj);
-		else if(type=="coach")
-			coachDao.addCoach((Coach)obj);
+		if (type == "student")
+			stuDao.addStudent((Student) obj);
+		else if (type == "coach")
+			coachDao.addCoach((Coach) obj);
 		else
-			personDao.addPerson((Person)obj);
-		
+			personDao.addPerson((Person) obj);
+
 	}
 
 }

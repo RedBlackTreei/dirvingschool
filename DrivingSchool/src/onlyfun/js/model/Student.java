@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "PERSON")
 @DiscriminatorValue(value = "student")
 public class Student extends Person {
-	
+
 	private String dateOfEntry;// 入学时间
 	private Coach coach; // 教练
 	private LocalOfSign localOfSign;// 报名点
@@ -16,7 +16,7 @@ public class Student extends Person {
 	private int finshedSub; // 完成科目
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="coachId")
+	@JoinColumn(name = "coachId")
 	public Coach getCoach() {
 		return coach;
 	}
@@ -64,13 +64,13 @@ public class Student extends Person {
 	public void setFinshedSub(int finshedSub) {
 		this.finshedSub = finshedSub;
 	}
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="localId")
+	@JoinColumn(name = "localId")
 	public LocalOfSign getLocalOfSign() {
 		return localOfSign;
 	}
-	
+
 	public void setLocalOfSign(LocalOfSign localOfSign) {
 		this.localOfSign = localOfSign;
 	}

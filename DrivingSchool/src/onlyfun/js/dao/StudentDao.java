@@ -12,43 +12,44 @@ public interface StudentDao {
 	 * 获取学生列表
 	 */
 	public List<Student> getStudent();
-	
+
 	/**
 	 * 通过username获取学生信息
 	 */
 	public Student getStuByUsername(String username);
+
 	/**
 	 * 通过Id获取学生信息
 	 */
 	public Student getStudentById(long stuId);
-	
+
 	/**
 	 * 更新学生信息
 	 */
 	public void update(Student stu);
-	
+
 	/**
 	 * 删除学生
 	 */
 	public void deleteStudent(Student stu);
-	
+
 	/**
 	 * 删除学生
 	 */
 	public void deleteStudentById(long stuId);
-	
+
 	/**
 	 * 添加学生
 	 */
 	public void addStudent(Student stu);
-	
+
 	/**
 	 * 是否存在该学生
 	 */
 	public boolean isExist(String username);
-	
+
 	/**
 	 * 登录
 	 */
-	public boolean login(String username,String password);
+	public boolean login(String username, String password);
 }

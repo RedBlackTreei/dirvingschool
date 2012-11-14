@@ -70,7 +70,7 @@ public class PersonDaoImpl implements PersonDao {
 	@Transactional
 	public void addPerson(Person person) {
 		this.hibernateTemplate.save(person);
-		
+
 	}
 
 }

@@ -35,15 +35,17 @@ public class UserAction extends ActionSupport implements SessionAware {
 		String userRole = "";
 		if (type.get(0).equals("学员")) {
 			userRole = "student";
-		} else if (type.get(0).equals("教练")){
+		} else if (type.get(0).equals("教练")) {
 			userRole = "coach";
-		} else if(type.get(0).equals("管理员")) {
+		} else if (type.get(0).equals("管理员")) {
 			userRole = "person";
 		}
 		String r = type.get(0);
 		System.out.println(r);
 		boolean result = userService.login(username, password, userRole);
-		System.out.println("result -- >" + result + "  username -- >" + person.getUsername() + "  password -- >" + password + "  type -->" +userRole);
+		System.out.println("result -- >" + result + "  username -- >"
+				+ person.getUsername() + "  password -- >" + password
+				+ "  type -->" + userRole);
 		if (result) {
 			session.put("user", userService.getInfo(username, userRole));
 			return SUCCESS;

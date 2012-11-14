@@ -27,7 +27,7 @@ public class Person {
 	private String username;
 	private String password;
 
-	@Column(name="username",unique=true,nullable=false)
+	@Column(name = "username", unique = true, nullable = false)
 	public String getUsername() {
 		return username;
 	}
@@ -44,14 +44,13 @@ public class Person {
 		this.password = password;
 	}
 
-
 	@Id
 	@GeneratedValue
 	@Column(name = "personId")
 	public Long getPersonId() {
 		return personId;
 	}
-	
+
 	public void setPersonId(Long personId) {
 		this.personId = personId;
 	}

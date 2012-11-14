@@ -1,6 +1,5 @@
 package onlyfun.js.junit;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -19,10 +18,11 @@ public class TestNewsService {
 	NewsService ns = null;
 	ApplicationContext context = null;
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
 	@Before
 	public void setUp() throws Exception {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		ns = (NewsService)context.getBean("newsServiceImpl");
+		ns = (NewsService) context.getBean("newsServiceImpl");
 	}
 
 	@After
@@ -30,28 +30,28 @@ public class TestNewsService {
 		context = null;
 		ns = null;
 	}
-	
+
 	@Test
-	public void testAddNews(){
+	public void testAddNews() {
 		News news = new News();
 		news.setTitle("");
 		news.setContent("");
 		news.setDate(format.format(new Date()));
 		ns.addNews(news);
 	}
-	
+
 	@Test
-	public void testGetNews(){
+	public void testGetNews() {
 		List<News> news = ns.getNewsList();
 		for (News news2 : news) {
 			System.out.println(news2.getTitle());
 		}
 	}
-	
+
 	@Test
-	public void testGetNewsById(){
+	public void testGetNewsById() {
 		News news = ns.getNews(1);
 		System.out.println(news.getTitle());
 	}
-	
+
 }

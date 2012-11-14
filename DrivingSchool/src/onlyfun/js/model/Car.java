@@ -65,7 +65,6 @@ public class Car {
 		this.remark = remark;
 	}
 
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "stuId")
 	public Student getStudent() {

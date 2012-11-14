@@ -21,10 +21,10 @@ public class QuestionDaoImpl implements QuestionDao {
 	private HibernateTemplate hibernateTemplate;
 
 	@Resource
-	public void setSessionFactory(SessionFactory sessionFactory){
+	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
 	}
-	
+
 	@Transactional
 	public List<Question> getQuestions() {
 		@SuppressWarnings("unchecked")
@@ -34,7 +34,8 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Transactional
 	public Question getQuestionById(long id) {
-		Question question = (Question)this.hibernateTemplate.get(Question.class, id);
+		Question question = (Question) this.hibernateTemplate.get(
+				Question.class, id);
 		return question;
 	}
 

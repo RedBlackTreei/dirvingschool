@@ -1,6 +1,5 @@
 package onlyfun.js.junit;
 
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestCoachDao {
-	
+
 	ApplicationContext context = null;
 	CoachDao dao = null;
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -23,46 +22,46 @@ public class TestCoachDao {
 	@Before
 	public void setUp() throws Exception {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		dao = (CoachDao)context.getBean("coachDaoImpl");
+		dao = (CoachDao) context.getBean("coachDaoImpl");
 	}
 
 	@Test
-	public void testGetCoach(){
+	public void testGetCoach() {
 		List<Coach> coach = dao.getCoach();
-		for(Coach c : coach){
+		for (Coach c : coach) {
 			System.out.println(c.getName());
 		}
 	}
-	
+
 	@Test
-	public void testGetCoachById(){
+	public void testGetCoachById() {
 		Coach coach = dao.getCoachById(1);
-			System.out.println(coach.getName());
+		System.out.println(coach.getName());
 	}
-	
+
 	@Test
-	public void testGetCoachByUsername(){
+	public void testGetCoachByUsername() {
 		Coach coach = dao.getCoachByUsername("jishen21");
-		if(coach==null)
+		if (coach == null)
 			System.out.println("不存在此用戶！");
 		else
 			System.out.println(coach.getName());
 	}
-	
+
 	@Test
-	public void testUpdate(){
+	public void testUpdate() {
 		Coach coach = dao.getCoachById(1);
 		coach.setStuNum(3);
 		dao.update(coach);
 	}
-	
+
 	@Test
-	public void testDeleteById(){
+	public void testDeleteById() {
 		dao.deleteCoachById(4);
 	}
-	
+
 	@Test
-	public void testAdd(){
+	public void testAdd() {
 		Coach coach = new Coach();
 		coach.setName("比尔-盖茨");
 		coach.setAddress("纽约-曼哈顿-16号");
@@ -74,17 +73,17 @@ public class TestCoachDao {
 		coach.setTel("15280774223");
 		dao.addCoach(coach);
 	}
-	
+
 	@Test
-	public void testLogin(){
+	public void testLogin() {
 		Assert.assertEquals(true, dao.login("jishen521", "101"));
 	}
-	
+
 	@Test
-	public void testExist(){
+	public void testExist() {
 		Assert.assertEquals(true, dao.isExist("jishen521"));
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		context = null;

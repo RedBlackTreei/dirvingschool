@@ -121,15 +121,15 @@ public class TestUtil {
 		System.out.println(items.size());
 		Iterator<QuestionItem> it = items.iterator();
 		boolean hasNext = it.hasNext();
-		while(hasNext){
+		while (hasNext) {
 			System.out.println(it.next().getItem());
 		}
 
-			transaction.commit();
+		transaction.commit();
 	}
-	
+
 	@Test
-	public void testAddStock(){
+	public void testAddStock() {
 		Stock stock = new Stock();
 		stock.setStoresName("台式电脑");
 		stock.setStoresId("367-9842-86395");
@@ -140,21 +140,20 @@ public class TestUtil {
 		session.save(stock);
 		transaction.commit();
 	}
-	
+
 	@Test
-	public void testAddStudyItems(){
+	public void testAddStudyItems() {
 		transaction = session.beginTransaction();
 		StudyItems items = new StudyItems();
 		items.setClassHour(48);
 		items.setItemName("项目1");
-		Coach c = (Coach)session.load(Coach.class, 1l);
+		Coach c = (Coach) session.load(Coach.class, 1l);
 		Set<Coach> set = new HashSet<Coach>();
 		set.add(c);
 		items.setCoach(set);
 		session.save(items);
 		transaction.commit();
-		
-		
+
 	}
 
 	@Test

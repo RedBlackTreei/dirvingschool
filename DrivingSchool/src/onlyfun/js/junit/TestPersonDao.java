@@ -21,7 +21,7 @@ public class TestPersonDao {
 	@Before
 	public void setUp() throws Exception {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		dao = (PersonDao)context.getBean("personDaoImpl");
+		dao = (PersonDao) context.getBean("personDaoImpl");
 	}
 
 	@After

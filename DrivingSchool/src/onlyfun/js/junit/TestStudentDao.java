@@ -24,7 +24,7 @@ public class TestStudentDao {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		dao = (StudentDao) context.getBean("studentDaoImpl");
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		context = null;
@@ -62,11 +62,11 @@ public class TestStudentDao {
 	public void testDeleteStudentById() {
 		dao.deleteStudentById(5);
 	}
-	
+
 	@Test
-	public void testGetStudentByUsername(){
+	public void testGetStudentByUsername() {
 		Student stu = dao.getStuByUsername("w1u");
-		if(stu==null)
+		if (stu == null)
 			System.out.println("不存在此用戶");
 		else
 			System.out.println(stu.getName());
@@ -88,14 +88,14 @@ public class TestStudentDao {
 		stu.setSchoolTime("8");
 		dao.addStudent(stu);
 	}
-	
+
 	@Test
-	public void login(){
+	public void login() {
 		System.out.println(dao.login("wu", "102"));
 	}
-	
+
 	@Test
-	public void testExist(){
+	public void testExist() {
 		System.out.println(dao.isExist("ji"));
 	}
 

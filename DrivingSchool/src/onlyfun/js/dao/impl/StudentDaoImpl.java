@@ -84,7 +84,7 @@ public class StudentDaoImpl implements StudentDao {
 		String sql = "from Student stu where stu.username=? and stu.password=?";
 		String[] values = new String[] { username, password };
 		@SuppressWarnings("unchecked")
-		List<Student> stu = this.hibernateTemplate.find(sql,values);
+		List<Student> stu = this.hibernateTemplate.find(sql, values);
 		return (stu.size() != 0);
 	}
 }

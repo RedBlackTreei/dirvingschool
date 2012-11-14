@@ -16,10 +16,10 @@ public class Question {
 	private Long id;
 	private String title;
 	private Set<QuestionItem> items = new HashSet<QuestionItem>();
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="questionId")
+	@Column(name = "questionId")
 	public Long getId() {
 		return id;
 	}
@@ -27,14 +27,16 @@ public class Question {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	@OneToMany(mappedBy="question",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+
+	@OneToMany(mappedBy = "question", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	public Set<QuestionItem> getItems() {
 		return items;
 	}

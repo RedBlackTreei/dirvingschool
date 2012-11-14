@@ -1,6 +1,5 @@
 package onlyfun.js.junit;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -19,62 +18,63 @@ public class TestCarDao {
 	ApplicationContext context = null;
 	CarDao dao = null;
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
 	@Before
 	public void setUp() throws Exception {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		dao = (CarDao)context.getBean("carDaoImpl");
+		dao = (CarDao) context.getBean("carDaoImpl");
 	}
-	
+
 	@Test
-	public void testGetCar(){
-		Car car = (Car)dao.getCarById(1);
+	public void testGetCar() {
+		Car car = (Car) dao.getCarById(1);
 		System.out.println(car.getRemark());
 		System.out.println(car.getPlateNum());
 		System.out.println(car.getRegDate());
 		System.out.println(car.getType());
 	}
-	
+
 	@Test
-	public void testGetCarByType(){
+	public void testGetCarByType() {
 		List<Car> cars = dao.getCarByType("奥迪A6");
-		
-		for(Car car : cars){
+
+		for (Car car : cars) {
 			System.out.println(car.getRemark());
 			System.out.println(car.getPlateNum());
 			System.out.println(car.getRegDate());
 			System.out.println(car.getType());
 		}
 	}
-	
+
 	@Test
-	public void testGetCarByPlateNum(){
+	public void testGetCarByPlateNum() {
 		Car car = dao.getCarByPlateNum("闽H354300");
 		System.out.println(car.getRemark());
 		System.out.println(car.getPlateNum());
 		System.out.println(car.getRegDate());
 		System.out.println(car.getType());
 	}
-	
+
 	@Test
-	public void testUpdate(){
-		Car car = (Car)dao.getCarById(1);
+	public void testUpdate() {
+		Car car = (Car) dao.getCarById(1);
 		car.setRegDate(format.format(new Date()));
 		dao.update(car);
 	}
-	
+
 	@Test
-	public void testAddCar(){
+	public void testAddCar() {
 		Car car = new Car();
 		car.setPlateNum("皖S65983");
 		car.setType("BMW A8");
 		car.setRegDate(format.format(new Date()));
 		car.setRemark("此车很贵，小心使用");
 		dao.addCar(car);
-		//System.out.println(format.format(new Date()));
+		// System.out.println(format.format(new Date()));
 	}
-	
+
 	@Test
-	public void testDelete(){
+	public void testDelete() {
 		dao.deleteCarById(3);
 	}
 

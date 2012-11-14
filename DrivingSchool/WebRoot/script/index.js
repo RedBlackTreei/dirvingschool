@@ -111,6 +111,8 @@ Ext.onReady(function() {
 		}, {
 			region : 'center',
 			xtype : 'tabpanel',
+			closable:true,
+			layout:'fit',
 			// TabPanel itself has no title
 			activeTab : 0,
 			// First tab active by default
