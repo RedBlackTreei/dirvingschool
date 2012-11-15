@@ -28,11 +28,13 @@ Ext.onReady(function() {
 
 	Ext.create('Ext.grid.Panel', {
 		id : 'newsList',
+		layout : 'fit',
 		frame : true,
 		store : store,
 		renderTo : Ext.getBody(),
 		columns : [ {
-			xtype : 'hiddenfield',
+			text:'id',
+			//xtype : 'hiddenfield',
 			dataIndex : 'id'
 		}, {
 			text : '新闻标题',
