@@ -46,17 +46,53 @@ public class NewsAction extends ActionSupport implements ServletRequestAware,
 	
 	/**
 	 *	添加新闻 
+	 * @throws IOException
 	 */
 	public void addNews() throws IOException{
 		String date = news.getDate();
 		System.out.println("date---"+date);
-		newsService.addNews(news);
-		if(news!=null){
+		
+		try {
+			this.newsService.addNews(news);
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println("{success:true, msg:'添加成功'}");
-		} else {
+		} catch (Exception e) {
 			response.setContentType("text/html; charset=UTF-8");
 			response.getWriter().println("{success:false, msg:'添加失败'}");
+		}
+	}
+	
+	/**
+	 *	删除新闻 
+	 * @throws IOException 
+	 */
+	public void deleteNews() throws IOException{
+		try{
+			long id = Long.parseLong(request.getParameter("id"));
+			this.newsService.deleteNews(id);
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println("{success:true, msg:'删除成功'}");
+		}catch(Exception e){
+			e.printStackTrace();
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println("{success:false, msg:'删除失败'}");
+		}
+	}
+	
+	/**
+	 * 编辑新闻
+	 * @return
+	 * @throws IOException 
+	 */
+	public void editNews() throws IOException{
+		try {
+			System.out.println(news.getTitle());
+			this.newsService.updateNews(news);
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println("{success:true, msg:'修改成功'}");
+		} catch (Exception e) {
+			response.setContentType("text/html; charset=UTF-8");
+			response.getWriter().println("{success:false, msg:'修改失败'}");
 		}
 	}
 
