@@ -65,10 +65,10 @@ Ext.onReady(function() {
 					text : '编辑',
 					handler : function() {
 						var selModel = newsGrid.getSelectionModel();
-						if(selModel.hasSelection()){
+						if (selModel.hasSelection()) {
 							var records = selModel.getSelection();
 							editNews(records);
-						}else{
+						} else {
 							Ext.Msg.alert('失败', '请选择一行数据进行修改');
 						}
 					}
@@ -180,7 +180,7 @@ Ext.onReady(function() {
 
 	function editNews(records) {
 		var model = records[0];
-		var eidtForm =Ext.create('Ext.form.Panel', {
+		var eidtForm = Ext.create('Ext.form.Panel', {
 			bodyPadding : 5,
 			width : 500,
 			height : 500,
@@ -192,27 +192,27 @@ Ext.onReady(function() {
 			url : 'editNewsAction',
 			items : [ {
 				// xtype : 'hidden',
-				xtype:'textfield',
-				name:'news.id',
-				value:model.get('id'),
+				xtype : 'textfield',
+				name : 'news.id',
+				value : model.get('id'),
 				hidden : true,
-			},{
+			}, {
 				fieldLabel : '标题',
 				xtype : 'textfield',
 				name : 'news.title',
-				value:model.get('title'),
+				value : model.get('title'),
 				allowBlank : false
 			}, {
 				fieldLabel : '时间',
 				xtype : 'datefield',
 				name : 'news.date',
-				value:model.get('date'),
+				value : model.get('date'),
 				allowBlank : false
 			}, {
 				fieldLabel : '内容',
 				xtype : 'htmleditor',
 				name : 'news.content',
-				value:model.get('content'),
+				value : model.get('content'),
 				height : 200,
 				allowBlank : false
 			} ],
