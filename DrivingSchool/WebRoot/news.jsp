@@ -10,10 +10,8 @@
 <html>
 	<head>
 		<base href="<%=basePath%>">
-		<script type="text/javascript" src="extjs4/ext-all.js"></script>
+		<%@include file="common.jsp"%>
 		<script type="text/javascript" src="script/news.js"></script>
-		<link type="text/css" rel="stylesheet"
-			href="extjs4/resources/css/ext-all.css" />
 		<title>新闻管理</title>
 	</head>
 

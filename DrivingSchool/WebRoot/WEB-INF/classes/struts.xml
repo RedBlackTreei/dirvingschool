@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE struts PUBLIC  
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"  
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
+	
 	<package name="default" extends="json-default">
 		<action name="loginAction" class="userAction" method="login">
 			<result>/index.jsp</result>
@@ -25,6 +26,22 @@
 		</action>
 		
 		<action name="deleteNewsAction" class="newsAction" method="deleteNews">
+			<result type="json"/>
+		</action>
+		
+		<action name="getItemsAction" class="studyItemAction" method="getItemsList">
+			<result type="json"/>
+		</action>
+		
+		<action name="deleteItemAction" class="studyItemAction" method="deleteItem">
+			<result type="json"/>
+		</action>
+		
+		<action name="updateItemAction" class="studyItemAction" method="updateItem">
+			<result type="json"/>
+		</action>
+		
+		<action name="addItemAction" class="studyItemAction" method="addItem">
 			<result type="json"/>
 		</action>
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->

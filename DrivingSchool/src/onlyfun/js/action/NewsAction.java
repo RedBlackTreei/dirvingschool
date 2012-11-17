@@ -33,10 +33,6 @@ public class NewsAction extends ActionSupport implements ServletRequestAware,
 	 */
 	public void getNewsList() throws Exception {
 		List<News> newses = newsService.getNewsList();
-		for (News news : newses) {
-			System.out.println(news.getDate());
-			System.out.println(news.getId());
-		}
 		String json = JSONArray.fromObject(newses).toString();
 		System.out.println("json-----" + json);
 		this.response.setContentType("text/html; charset=UTF-8");

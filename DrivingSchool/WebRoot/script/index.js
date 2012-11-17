@@ -27,6 +27,7 @@ Ext.onReady(function() {
 				leaf : true
 			}, {
 				text : '学习项目管理',
+				url : 'studyItem.jsp',
 				leaf : true
 			}, {
 				text : '报名点管理',
@@ -111,8 +112,8 @@ Ext.onReady(function() {
 		}, {
 			region : 'center',
 			xtype : 'tabpanel',
-			closable:true,
-			layout:'fit',
+			closable : true,
+			layout : 'fit',
 			// TabPanel itself has no title
 			activeTab : 0,
 			// First tab active by default

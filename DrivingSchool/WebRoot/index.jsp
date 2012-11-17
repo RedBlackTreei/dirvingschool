@@ -11,10 +11,8 @@
 <html>
 	<head>
 		<base href="<%=basePath%>">
-		<script type="text/javascript" src="extjs4/ext-all.js"></script>
+		<%@include file="common.jsp"%>
 		<script type="text/javascript" src="script/index.js"></script>
-		<link type="text/css" rel="stylesheet"
-			href="extjs4/resources/css/ext-all.css" />
 		<title>驾校资源管理系统</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
