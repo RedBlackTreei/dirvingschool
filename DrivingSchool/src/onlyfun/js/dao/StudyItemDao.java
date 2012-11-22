@@ -4,8 +4,6 @@ import java.util.List;
 
 import onlyfun.js.model.StudyItems;
 
-;
-
 /**
  * 学习项目管理
  */
