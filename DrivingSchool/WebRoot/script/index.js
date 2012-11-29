@@ -9,17 +9,20 @@ Ext.onReady(function() {
 				expanded : true,
 				children : [ {
 					text : '学员管理',
-					url : 'login.jsp',
+					url : 'student.jsp',
 					leaf : true
 				}, {
 					text : '教练管理',
+					url:'coach.jsp',
 					leaf : true
 				} ]
 			}, {
 				text : "车辆管理",
+				url:'car.jsp',
 				leaf : true
 			}, {
 				text : "库存管理",
+				url : 'stock.jsp',
 				leaf : true
 			}, {
 				text : '新闻管理',
@@ -31,12 +34,14 @@ Ext.onReady(function() {
 				leaf : true
 			}, {
 				text : '报名点管理',
+				url:'localOfSign.jsp',
 				leaf : true
 			}, {
 				text : '考试管理',
 				expanded : true,
 				children : [ {
 					text : '题库管理',
+					url:'question.jsp',
 					leaf : true
 				}, {
 					text : '成绩管理',

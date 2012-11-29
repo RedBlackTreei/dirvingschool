@@ -52,45 +52,7 @@ Ext.onReady(function() {
 			sortable : true,
 			flex : 0.1,
 			dataIndex : 'date'
-		} ],
-		tbar : [
-				{
-					text : '添加',
-					handler : function() {
-						addNews();
-					}
-				},
-				'-',
-				{
-					text : '编辑',
-					handler : function() {
-						var selModel = newsGrid.getSelectionModel();
-						if (selModel.hasSelection()) {
-							var records = selModel.getSelection();
-							editNews(records);
-						} else {
-							Ext.Msg.alert('失败', '请选择一行数据进行修改');
-						}
-					}
-				},
-				'-',
-				{
-					text : '删除',
-					handler : function() {
-						var selectedModel = newsGrid.getSelectionModel();
-						if (selectedModel.hasSelection()) {
-							var record = selectedModel.getSelection();
-							Ext.Msg.confirm("<font color='red'>系统提示</font>",
-									"您确定要删除选择的数据吗?", function(btn) {
-										if (btn == "yes") {
-											deleteNews(record);
-										}
-									});
-						} else {
-							Ext.Msg.alert('失败', '请选择一行数据进行删除');
-						}
-					}
-				} ]
+		} ]
 	});
 
 	function addNews() {

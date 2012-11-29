@@ -44,6 +44,22 @@
 		<action name="addItemAction" class="studyItemAction" method="addItem">
 			<result type="json"/>
 		</action>
+		
+		<action name="getStocksAction" class="stockAction" method="getStockList">
+			<result type="json"/>
+		</action>
+		
+		<action name="addStockAction" class="stockAction" method="addStock">
+			<result type="json"/>
+		</action>
+		
+		<action name="deleteStockAction" class="stockAction" method="deleteStock">
+			<result type="json"/>
+		</action>
+		
+		<action name="editStockAction" class="stockAction" method="editStock">
+			<result type="json"/>
+		</action>
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->
 		<!--<action name="loginUserAction" class="userAction" method="login"> <result 
 			type="redirectAction" name="success"> <param name="actionName">listBookmarkAction</param> 

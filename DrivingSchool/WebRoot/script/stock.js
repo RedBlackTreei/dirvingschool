@@ -1,44 +1,55 @@
-/**
- * 学习项目前台js代码
+/*
+ *库存管理前台代码
  */
 Ext.onReady(function() {
-	Ext.define('StudyItem', {
+	Ext.define('Stock', {
 		extend : 'Ext.data.Model',
 		fields : [ {
 			name : 'id',
 			type : 'long'
 		}, {
-			name : 'itemName',
+			name : 'storesName',
 			type : 'string'
 		}, {
-			name : 'classHour',
+			name : 'storesId',
+			type : 'string'
+		}, {
+			name : 'price',
+			type : 'double'
+		}, {
+			name : 'currentNum',
+			type : 'int'
+		}, {
+			name : 'minNum',
 			type : 'int'
 		} ]
 	});
 
 	var store = Ext.create('Ext.data.ArrayStore', {
-		model : 'StudyItem',
+		model : 'Stock',
 		proxy : {
 			type : 'ajax',
 			api : {
-				read : 'getItemsAction',
-				create : 'addItemAction',
-				update : 'updateItemAction',
-				destory : 'deleteItemAction'
+				read : 'getStocksAction',
+				create : 'addStockAction',
+				updaet : 'editStockAction',
+				destory : 'deleteStockAction'
 			},
 			reader : {
-				type : 'json',
+				type : 'json'
 			}
 		},
 		listeners : {
 			update : function(store, record) {
-				// alert(record.get("ID"))
 				Ext.Ajax.request({
-					url : 'updateItemAction',
+					url : 'editStockAction',
 					params : {
-						'items.id': record.get('id'),
-						'items.classHour' : record.get('classHour'),
-						'items.itemName' : record.get('itemName')
+						'stock.id' : record.get('id'),
+						'stock.storesName' : record.get('storesName'),
+						'stock.storesId' : record.get('storesId'),
+						'stock.price' : record.get('price'),
+						'stock.currentNum' : record.get('currentNum'),
+						'stock.minNum' : record.get('minNum')
 					},
 					success : function(response) {
 						store.reload();
@@ -63,15 +74,15 @@ Ext.onReady(function() {
 				Ext.example.msg(operation.action, operation.resultSet.message);
 			}
 		},
-		autoLoad : true
+		autoLoad:true
 	});
 
 	var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
 		clicksToEdit : 2
 	});
 
-	var studyItemGrid = Ext.create('Ext.grid.Panel', {
-		id : 'itemsList',
+	var stockGrid = Ext.create('Ext.grid.Panel', {
+		id : 'stockList',
 		// layout : 'fit',
 		width : 600,
 		frame : true,
@@ -86,19 +97,52 @@ Ext.onReady(function() {
 			hidden : true,
 			dataIndex : 'id'
 		}, {
-			text : '项目名称',
+			text : '名称',
 			sortable : true,
 			flex : 0.3,
-			dataIndex : 'itemName',
+			dataIndex : 'storesName',
 			editor : {
 				xtype : 'textfield',
 				allowBlank : false
 			}
 		}, {
-			text : '课时',
+			text : '编号',
 			sortable : true,
 			flex : 0.2,
-			dataIndex : 'classHour',
+			dataIndex : 'storesId',
+			editor : {
+				xtype : 'textfield',
+				hideTrigger : true,
+				minValue : 1,
+				allowBlank : false
+			}
+		}, {
+			text : '价格',
+			sortable : true,
+			flex : 0.2,
+			dataIndex : 'price',
+			editor : {
+				xtype : 'numberfield',
+				hideTrigger : true,
+				minValue : 1,
+				allowBlank : false
+			}
+		}, {
+			text : '现存数量',
+			sortable : true,
+			flex : 0.2,
+			dataIndex : 'currentNum',
+			editor : {
+				xtype : 'numberfield',
+				hideTrigger : true,
+				minValue : 1,
+				allowBlank : false
+			}
+		}, {
+			text : '最低需求',
+			sortable : true,
+			flex : 0.2,
+			dataIndex : 'minNum',
 			editor : {
 				xtype : 'numberfield',
 				hideTrigger : true,
@@ -110,20 +154,20 @@ Ext.onReady(function() {
 				{
 					text : '添加',
 					handler : function() {
-						addItem();
+						addStores();
 					}
 				},
 				'-',
 				{
 					text : '删除',
 					handler : function() {
-						var selectedModel = studyItemGrid.getSelectionModel();
+						var selectedModel = stockGrid.getSelectionModel();
 						if (selectedModel.hasSelection()) {
 							var record = selectedModel.getSelection();
 							Ext.Msg.confirm("<font color='red'>系统提示</font>",
 									"您确定要删除选择的数据吗?", function(btn) {
 										if (btn == "yes") {
-											 deleteItem(record);
+											deleteStores(record);
 										}
 									});
 						} else {
@@ -133,7 +177,7 @@ Ext.onReady(function() {
 				} ]
 	});
 	
-	function addItem() {
+	function addStores() {
 		var addForm = Ext.create('Ext.form.Panel', {
 			bodyPadding : 5,
 			// Fields will be arranged vertically, stretched to full width
@@ -141,18 +185,33 @@ Ext.onReady(function() {
 			frame : true,
 			bodyBorder : false,
 			// The form will submit an AJAX request to this URL when submitted
-			url : 'addItemAction',
+			url : 'addStockAction',
 			items : [ {
-				fieldLabel : '课时',
-				xtype : 'numberfield',
+				fieldLabel : '名称',
+				xtype : 'textfield',
 				maxValue:200,
 				minValue:1,
-				name : 'items.classHour',
+				name : 'stock.storesName',
 				allowBlank : false
 			}, {
-				fieldLabel : '课程名称',
+				fieldLabel : '编号',
 				xtype : 'textfield',
-				name : 'items.itemName',
+				name : 'stock.storesId',
+				allowBlank : false
+			},{
+				fieldLabel : '价格',
+				xtype : 'numberfield',
+				name : 'stock.price',
+				allowBlank : false
+			},{
+				fieldLabel : '当前数量',
+				xtype : 'numberfield',
+				name : 'stock.currentNum',
+				allowBlank : false
+			},{
+				fieldLabel : '最低需求',
+				xtype : 'numberfield',
+				name : 'stock.minNum',
 				allowBlank : false
 			}],
 
@@ -186,17 +245,16 @@ Ext.onReady(function() {
 
 		var win = Ext.create('Ext.window.Window', {
 			layout:'fit',
-			width:250,
+			width:400,
 			title : '添加科目',
 			items : [ addForm ]
 		});
 		win.show();
 	}
-	
-	function deleteItem(records){
+	function deleteStores(records){
 		var id = records[0].get('id');
 		Ext.Ajax.request({
-			url : 'deleteItemAction',
+			url : 'deleteStockAction',
 			params : {
 				id : id
 			},
