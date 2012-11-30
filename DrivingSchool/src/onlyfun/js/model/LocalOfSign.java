@@ -1,5 +1,6 @@
 package onlyfun.js.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +10,7 @@ public class LocalOfSign {
 
 	private Long id;
 	private String name;
-	private String Address;
+	private String address;
 	private String tel;
 
 	@Id
@@ -30,12 +31,13 @@ public class LocalOfSign {
 		this.name = name;
 	}
 
+	@Column(name="address")
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 	public String getTel() {

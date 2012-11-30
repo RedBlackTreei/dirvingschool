@@ -8,11 +8,13 @@
 	<constant name="struts.devMode" value="true" />
 	
 	<package name="default" extends="json-default">
+		<!-- 用户管理 -->
 		<action name="loginAction" class="userAction" method="login">
 			<result>/index.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
 		
+		<!-- 新闻管理 -->
 		<action name="getNewsAction" class="newsAction" method="getNewsList">
 			<result type="json"/>
 		</action>
@@ -29,6 +31,7 @@
 			<result type="json"/>
 		</action>
 		
+		<!-- 学习项目管理 -->
 		<action name="getItemsAction" class="studyItemAction" method="getItemsList">
 			<result type="json"/>
 		</action>
@@ -45,6 +48,7 @@
 			<result type="json"/>
 		</action>
 		
+		<!-- 库存管理 -->
 		<action name="getStocksAction" class="stockAction" method="getStockList">
 			<result type="json"/>
 		</action>
@@ -60,6 +64,25 @@
 		<action name="editStockAction" class="stockAction" method="editStock">
 			<result type="json"/>
 		</action>
+		
+		<!-- 报名点管理 -->
+		<action name="getLOSListAction" class="localOfSignAction" method="getLocalOfSignList">
+			<result type="json"/>
+		</action>
+		
+		<action name="addLOSAction" class="localOfSignAction" method="addLocalOfSign">
+			<result type="json"/>
+		</action>
+		
+		<action name="deleteLOSAction" class="localOfSignAction" method="deleteLocalOfSign">
+			<result type="json"/>
+		</action>
+		
+		<action name="editLOSAction" class="localOfSignAction" method="editLocalOfSign">
+			<result type="json"/>
+		</action>
+		
+		
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->
 		<!--<action name="loginUserAction" class="userAction" method="login"> <result 
 			type="redirectAction" name="success"> <param name="actionName">listBookmarkAction</param> 

@@ -103,6 +103,7 @@ Ext.onReady(function() {
 	var viewport = Ext.create('Ext.container.Viewport', {
 		layout : 'border',
 		baseCls : 'x-panel',
+		//frame:true,
 		items : [ {
 			region : 'north',
 			html : '<h1 class="x-panel-header">武夷驾校</h1>',
@@ -117,8 +118,8 @@ Ext.onReady(function() {
 		}, {
 			region : 'center',
 			xtype : 'tabpanel',
-			closable : true,
-			layout : 'fit',
+			//closable : true,
+			//layout : 'fit',
 			// TabPanel itself has no title
 			activeTab : 0,
 			// First tab active by default

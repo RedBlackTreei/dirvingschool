@@ -72,13 +72,14 @@ Ext.onReady(function() {
 
 	var studyItemGrid = Ext.create('Ext.grid.Panel', {
 		id : 'itemsList',
-		// layout : 'fit',
-		width : 600,
+		layout : 'fit',
+		//width : 600,
+		height:'100%',
 		frame : true,
 		store : store,
 		plugins : [ rowEditing ],
 		selType : 'rowmodel',
-		style : 'margin: 50px',
+		//style : 'margin: 50px',
 		renderTo : Ext.getBody(),
 		columns : [ {
 			text : 'id',

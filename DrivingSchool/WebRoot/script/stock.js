@@ -83,13 +83,14 @@ Ext.onReady(function() {
 
 	var stockGrid = Ext.create('Ext.grid.Panel', {
 		id : 'stockList',
-		// layout : 'fit',
-		width : 600,
+		layout : 'fit',
+		//width : 600,
+		height:'100%',
 		frame : true,
 		store : store,
 		plugins : [ rowEditing ],
 		selType : 'rowmodel',
-		style : 'margin: 50px',
+		//style : 'margin: 50px',
 		renderTo : Ext.getBody(),
 		columns : [ {
 			text : 'id',
@@ -99,7 +100,7 @@ Ext.onReady(function() {
 		}, {
 			text : '名称',
 			sortable : true,
-			flex : 0.3,
+			flex : 2,
 			dataIndex : 'storesName',
 			editor : {
 				xtype : 'textfield',
@@ -108,7 +109,7 @@ Ext.onReady(function() {
 		}, {
 			text : '编号',
 			sortable : true,
-			flex : 0.2,
+			flex : 3,
 			dataIndex : 'storesId',
 			editor : {
 				xtype : 'textfield',
@@ -119,7 +120,7 @@ Ext.onReady(function() {
 		}, {
 			text : '价格',
 			sortable : true,
-			flex : 0.2,
+			flex : 1,
 			dataIndex : 'price',
 			editor : {
 				xtype : 'numberfield',
@@ -130,7 +131,7 @@ Ext.onReady(function() {
 		}, {
 			text : '现存数量',
 			sortable : true,
-			flex : 0.2,
+			flex : 1,
 			dataIndex : 'currentNum',
 			editor : {
 				xtype : 'numberfield',
@@ -141,7 +142,7 @@ Ext.onReady(function() {
 		}, {
 			text : '最低需求',
 			sortable : true,
-			flex : 0.2,
+			flex : 1,
 			dataIndex : 'minNum',
 			editor : {
 				xtype : 'numberfield',
@@ -246,7 +247,7 @@ Ext.onReady(function() {
 		var win = Ext.create('Ext.window.Window', {
 			layout:'fit',
 			width:400,
-			title : '添加科目',
+			title : '删除库存',
 			items : [ addForm ]
 		});
 		win.show();
