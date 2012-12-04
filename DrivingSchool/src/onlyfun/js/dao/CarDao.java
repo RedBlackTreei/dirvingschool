@@ -75,4 +75,12 @@ public interface CarDao {
 	 * 删除
 	 */
 	public void deleteCar(Car car);
+	
+	/**
+	 * 获取车辆列表
+	 * 包含使用学生姓名
+	 * 使用教练姓名
+	 */
+	
+	public List<Object> getCarList();
 }

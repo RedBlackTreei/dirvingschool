@@ -1,0 +1,4 @@
+CREATE TEMPORARY TABLE tmp_table SELECT a.*,b.name FROM car a,person b WHERE a.stuId=b.personId
+SELECT * FROM tmp_table
+SELECT a.id,a.plateNum,a.regDate,a.remark,a.type,a.name AS stuName, b.name AS coachName,a.stuId,a.coachId FROM tmp_table a,person b WHERE a.coachId=b.personId
+DROP TABLE tmp_table

@@ -1,10 +1,15 @@
 package onlyfun.js.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -126,6 +131,20 @@ public class CarDaoImpl implements CarDao {
 	public void deleteCar(Car car) {
 		this.hibernateTemplate.delete(car);
 
+	}
+
+	@Transactional
+	public List<Object> getCarList() {
+		this.hibernateTemplate.executeFind(new HibernateCallback() {
+			
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				Query q = session.createQuery("");
+				return null;
+			}
+		});
+		return null;
 	}
 
 }
