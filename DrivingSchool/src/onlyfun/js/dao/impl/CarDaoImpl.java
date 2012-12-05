@@ -74,7 +74,7 @@ public class CarDaoImpl implements CarDao {
 	 */
 	@Transactional
 	public Car getCarByPlateNum(String plateNum) {
-		Car car = (Car) this.hibernateTemplate.find(
+		Car car = (Car)this.hibernateTemplate.find(
 				"from Car c where c.plateNum = '" + plateNum + "'").get(0);
 		return car;
 	}
@@ -133,18 +133,30 @@ public class CarDaoImpl implements CarDao {
 
 	}
 
+	/**
+	 * 获取车辆列表
+	 * @return List<Object> 车辆列表
+	 * 结果包含使用学生和使用教练的姓名
+	 */
 	@Transactional
-	public List<Object> getCarList() {
-		this.hibernateTemplate.executeFind(new HibernateCallback() {
-			
-			@Override
+	public List<Object[]> getCarListWithUser() {
+		@SuppressWarnings("unchecked")
+		List<Object[]> list = (List<Object[]>)this.hibernateTemplate.executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException,
 					SQLException {
-				Query q = session.createQuery("");
-				return null;
+				String sql = "{call car_proc()}";
+				Query q = session.createSQLQuery(sql);
+				return q.list();
 			}
 		});
-		return null;
+		return list;
+	}
+
+	@Transactional
+	public List<Car> getCarList() {
+		@SuppressWarnings("unchecked")
+		List<Car> cars = this.hibernateTemplate.find("from Car");
+		return cars;
 	}
 
 }

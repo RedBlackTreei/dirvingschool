@@ -82,5 +82,10 @@ public interface CarDao {
 	 * 使用教练姓名
 	 */
 	
-	public List<Object> getCarList();
+	public List<Object[]> getCarListWithUser();
+	
+	/**
+	 * 获取车辆列表
+	 */
+	public List<Car> getCarList();
 }

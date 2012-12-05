@@ -82,6 +82,11 @@
 			<result type="json"/>
 		</action>
 		
+		<!-- 车辆管理 -->
+		<action name="getCarsAction" class="carAction" method="getCarList">
+			<result type="json"/>
+		</action>
+		
 		
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->
 		<!--<action name="loginUserAction" class="userAction" method="login"> <result 

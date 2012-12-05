@@ -14,6 +14,13 @@ public interface CarService {
 	 * @return List<Car>
 	 */
 	public List<Car> getCarList();
+	
+	/**
+	 * 获取车辆信息，包含使用者姓名等
+	 * @return
+	 * List<Object[]>
+	 */
+	public List<Object[]> getCarListWithUser();
 
 	/**
 	 * 通过id获取车辆

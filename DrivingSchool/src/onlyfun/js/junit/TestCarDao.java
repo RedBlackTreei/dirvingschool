@@ -72,6 +72,14 @@ public class TestCarDao {
 		dao.addCar(car);
 		// System.out.println(format.format(new Date()));
 	}
+	
+	@Test
+	public void testGetCarList(){
+		List<Object[]> list = dao.getCarListWithUser();
+		for (Object object[] : list) {
+			System.out.println(object[0]+"  "+object[1] + "  " + object[2] + "  "+object[3]);
+		}
+	}
 
 	@Test
 	public void testDelete() {
