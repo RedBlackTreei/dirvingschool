@@ -88,4 +88,6 @@ public interface CarDao {
 	 * 获取车辆列表
 	 */
 	public List<Car> getCarList();
+	
+	public void update(Car car,long stuId,long coachId);
 }

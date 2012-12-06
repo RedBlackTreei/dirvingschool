@@ -50,12 +50,13 @@ Ext.onReady(function() {
 				Ext.Ajax.request({
 					url : 'editCarAction',
 					params : {
-						'stock.id' : record.get('id'),
-						'stock.storesName' : record.get('storesName'),
-						'stock.storesId' : record.get('storesId'),
-						'stock.price' : record.get('price'),
-						'stock.currentNum' : record.get('currentNum'),
-						'stock.minNum' : record.get('minNum')
+						'car.id' : record.get('id'),
+						'car.plateNum' : record.get('plateNum'),
+						'car.regDate' : record.get('regDate'),
+						'car.remark' : record.get('remark'),
+						'car.type' : record.get('type'),
+						'sId' : record.get('stuId'),
+						'cId' : record.get('coachId')
 					},
 					success : function(response) {
 						store.reload();
@@ -121,13 +122,13 @@ Ext.onReady(function() {
 				allowBlank : false
 			}
 		}, {
-			text : '学生',
+			text : '备注',
 			sortable : true,
-			dataIndex : 'stuName'
-		}, {
-			text : '教练',
-			sortable : true,
-			dataIndex : 'coachName'
+			dataIndex : 'remark',
+			editor : {
+				xtype : 'textfield',
+				allowBlank : false
+			}
 		}, {
 			text : '注册时间',
 			sortable : true,
@@ -137,14 +138,20 @@ Ext.onReady(function() {
 				allowBlank : false
 			}
 		}, {
+			text : '学生',
+			sortable : true,
+			dataIndex : 'stuName'
+		}, {
+			text : '教练',
+			sortable : true,
+			dataIndex : 'coachName'
+		}, {
 			text : 'stuId',
 			hidden : true,
-			type : 'long',
 			dataIndex : 'stuId'
 		}, {
-			name : 'coachId',
+			text : 'coachId',
 			hidden : true,
-			type : 'string',
 			dataIndex : 'coachId'
 		} ],
 		tbar : [
@@ -266,5 +273,9 @@ Ext.onReady(function() {
 				Ext.Msg.alert('失败', json.msg);
 			}
 		});
+	}
+
+	function formatDate(value) {
+		return value ? Ext.Date.dateFormat(value, 'M d, Y') : '';
 	}
 });

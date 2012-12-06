@@ -63,6 +63,12 @@ public class CarServiceImpl implements CarService {
 		List<Object[]> cars = this.carDao.getCarListWithUser();
 		return cars;
 	}
+
+	@Override
+	public void update(Car car, long stuId, long coachId) {
+		this.carDao.update(car, stuId, coachId);
+		
+	}
 	
 	public CarDao getCarDao() {
 		return carDao;

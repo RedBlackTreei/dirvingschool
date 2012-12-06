@@ -1,7 +1,6 @@
 package onlyfun.js.action;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import onlyfun.js.model.Car;
 import onlyfun.js.service.CarService;
 import onlyfun.js.uitl.Json;
@@ -68,6 +66,36 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 		}
 	}
 
+	/**
+	 * 编辑车辆信息<br/>
+	 * 
+	 * @throws IOException
+	 *             void
+	 */
+	public void editCar() throws IOException {
+		try {
+			String stuIdStr = request.getParameter("sId");
+			String coachIdStr = request.getParameter("cId");
+			System.out.println("stuIdStr=" + stuIdStr + " "
+					+ stuIdStr.equals(""));
+			if (!(stuIdStr.equals("")) && !(coachIdStr.equals(""))) {
+				long stuId = Long.parseLong(request.getParameter("sId"));
+				long coachId = Long.parseLong(request.getParameter("cId"));
+				System.out.println("stuId" + stuId);
+				this.carService.update(car, stuId, coachId);
+			} else {
+				this.carService.update(car);
+			}
+
+			this.response.getWriter().println("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:true, msg:'修改成功'}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.response.getWriter().println("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:false, msg:'修改失败'}");
+		}
+	}
+
 	@Override
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
@@ -94,5 +122,4 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 	public void setCarService(CarService carService) {
 		this.carService = carService;
 	}
-
 }

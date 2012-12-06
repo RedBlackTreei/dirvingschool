@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import onlyfun.js.dao.CarDao;
 import onlyfun.js.model.Car;
+import onlyfun.js.model.Coach;
+import onlyfun.js.model.Student;
 
 /**
  * 车辆管理操作
@@ -157,6 +159,15 @@ public class CarDaoImpl implements CarDao {
 		@SuppressWarnings("unchecked")
 		List<Car> cars = this.hibernateTemplate.find("from Car");
 		return cars;
+	}
+
+	@Transactional
+	public void update(Car car,long stuId, long coachId) {
+		Student stu = (Student)this.hibernateTemplate.get(Student.class, stuId);
+		Coach coach = (Coach)this.hibernateTemplate.get(Coach.class, coachId);
+		car.setCoach(coach);
+		car.setStudent(stu);
+		this.hibernateTemplate.update(car);
 	}
 
 }

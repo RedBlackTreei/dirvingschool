@@ -65,7 +65,7 @@ public class TestUtil {
 		car.setStudent(stu);
 		car.setType("奥迪A6");
 		car.setPlateNum("闽H354300");
-		car.setRegDate(format.format(new Date()));
+		//car.setRegDate(format.format(new Date()));
 		car.setRemark("好车！");
 
 		session.save(c);

@@ -1,5 +1,6 @@
 package onlyfun.js.model;
 
+
 import javax.persistence.*;
 
 @Entity

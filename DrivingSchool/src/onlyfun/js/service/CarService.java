@@ -56,4 +56,6 @@ public interface CarService {
 	 * void
 	 */
 	public void update(Car car);
+	
+	public void update(Car car,long stuId,long coachId);
 }
