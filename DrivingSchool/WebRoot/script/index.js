@@ -108,7 +108,7 @@ Ext.onReady(function() {
 			region : 'north',
 			html : '<h1 class="x-panel-header">武夷驾校</h1>',
 			height : 100,
-			border : false,
+			border : true,
 			margins : '0 0 5 0'
 		}, treePanel, {
 			region : 'south',
@@ -122,10 +122,12 @@ Ext.onReady(function() {
 			//layout : 'fit',
 			// TabPanel itself has no title
 			activeTab : 0,
-			// First tab active by default
+			//frame:true,
+			// First tab active by default,
 			items : {
 				title : '首页',
-				html : '欢迎使用驾校资源管理系统...'
+				html : '欢迎使用驾校资源管理系统...',
+				border:true
 			}
 		} ]
 	});

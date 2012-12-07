@@ -74,7 +74,7 @@ Ext.onReady(function() {
 				Ext.example.msg(operation.action, operation.resultSet.message);
 			}
 		},
-		autoLoad:true
+		autoLoad : true
 	});
 
 	var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
@@ -84,13 +84,13 @@ Ext.onReady(function() {
 	var stockGrid = Ext.create('Ext.grid.Panel', {
 		id : 'stockList',
 		layout : 'fit',
-		//width : 600,
-		height:'100%',
-		frame : true,
+		// width : 600,
+		height : '100%',
+		// frame : true,
 		store : store,
 		plugins : [ rowEditing ],
 		selType : 'rowmodel',
-		//style : 'margin: 50px',
+		// style : 'margin: 50px',
 		renderTo : Ext.getBody(),
 		columns : [ {
 			text : 'id',
@@ -177,7 +177,7 @@ Ext.onReady(function() {
 					}
 				} ]
 	});
-	
+
 	function addStores() {
 		var addForm = Ext.create('Ext.form.Panel', {
 			bodyPadding : 5,
@@ -190,8 +190,8 @@ Ext.onReady(function() {
 			items : [ {
 				fieldLabel : '名称',
 				xtype : 'textfield',
-				maxValue:200,
-				minValue:1,
+				maxValue : 200,
+				minValue : 1,
 				name : 'stock.storesName',
 				allowBlank : false
 			}, {
@@ -199,22 +199,22 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				name : 'stock.storesId',
 				allowBlank : false
-			},{
+			}, {
 				fieldLabel : '价格',
 				xtype : 'numberfield',
 				name : 'stock.price',
 				allowBlank : false
-			},{
+			}, {
 				fieldLabel : '当前数量',
 				xtype : 'numberfield',
 				name : 'stock.currentNum',
 				allowBlank : false
-			},{
+			}, {
 				fieldLabel : '最低需求',
 				xtype : 'numberfield',
 				name : 'stock.minNum',
 				allowBlank : false
-			}],
+			} ],
 
 			// Reset and Submit buttons
 			buttons : [ {
@@ -245,14 +245,14 @@ Ext.onReady(function() {
 		});
 
 		var win = Ext.create('Ext.window.Window', {
-			layout:'fit',
-			width:400,
+			layout : 'fit',
+			width : 400,
 			title : '删除库存',
 			items : [ addForm ]
 		});
 		win.show();
 	}
-	function deleteStores(records){
+	function deleteStores(records) {
 		var id = records[0].get('id');
 		Ext.Ajax.request({
 			url : 'deleteStockAction',

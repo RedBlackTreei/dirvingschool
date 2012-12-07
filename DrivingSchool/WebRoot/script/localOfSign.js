@@ -75,7 +75,7 @@ Ext.onReady(function() {
 		layout : 'fit',
 		//width: 600,
 		height:'100%',
-		frame: true,
+		//frame: true,
 		store: store,
 		plugins: [rowEditing],
 		selType: 'rowmodel',

@@ -1,4 +1,9 @@
 Ext.onReady(function() {
+
+	function formatDate(value) {
+		return value ? Ext.Date.dateFormat(value, 'M d, Y') : '';
+	}
+	
 	Ext.define('Car', {
 		extend : 'Ext.data.Model',
 		fields : [ {
@@ -133,8 +138,11 @@ Ext.onReady(function() {
 			text : '注册时间',
 			sortable : true,
 			dataIndex : 'regDate',
+			renderer: formatDate,
 			editor : {
-				xtype : 'datefield',
+				xtype: 'datefield',
+                format: 'm/d/y',
+                minValue: '01/01/06',
 				allowBlank : false
 			}
 		}, {
@@ -154,6 +162,15 @@ Ext.onReady(function() {
 			hidden : true,
 			dataIndex : 'coachId'
 		} ],
+		listeners:{
+			celldblclick : function(el, td, cellIndex, record, tr, rowIndex, e,
+					eOpts) {
+				if(cellIndex==5||cellIndex==6){
+					//alert("教练");
+					alert(record.get('id'));
+				}
+			}
+		},
 		tbar : [
 				{
 					text : '添加',
@@ -274,8 +291,11 @@ Ext.onReady(function() {
 			}
 		});
 	}
-
-	function formatDate(value) {
-		return value ? Ext.Date.dateFormat(value, 'M d, Y') : '';
+	
+	function editStuAndCoach(record) {
+		var stuId;
+		var coachId;
+		
 	}
+
 });

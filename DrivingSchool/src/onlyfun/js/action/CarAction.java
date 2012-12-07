@@ -73,26 +73,32 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 	 *             void
 	 */
 	public void editCar() throws IOException {
+		String stuIdStr = request.getParameter("sId");
+		String coachIdStr = request.getParameter("cId");
+		System.out.println("stuIdStr=" + stuIdStr + " "
+				+ stuIdStr.equals(""));
 		try {
-			String stuIdStr = request.getParameter("sId");
-			String coachIdStr = request.getParameter("cId");
-			System.out.println("stuIdStr=" + stuIdStr + " "
-					+ stuIdStr.equals(""));
 			if (!(stuIdStr.equals("")) && !(coachIdStr.equals(""))) {
 				long stuId = Long.parseLong(request.getParameter("sId"));
 				long coachId = Long.parseLong(request.getParameter("cId"));
 				System.out.println("stuId" + stuId);
 				this.carService.update(car, stuId, coachId);
 			} else {
+				car.setCoach(null);
+				car.setStudent(null);
 				this.carService.update(car);
 			}
 
-			this.response.getWriter().println("text/html; charset=UTF-8");
+			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:true, msg:'修改成功'}");
+			this.response.getWriter().flush();
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.response.getWriter().println("text/html; charset=UTF-8");
+			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:false, msg:'修改失败'}");
+		} finally{
+			stuIdStr = null;
+			coachIdStr = null;
 		}
 	}
 

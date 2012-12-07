@@ -30,7 +30,7 @@ Ext.onReady(function() {
 		id : 'newsList',
 		layout : 'fit',
 		height : '100%',
-		frame : true,
+		//frame : true,
 		store : store,
 		renderTo : Ext.getBody(),
 		columns : [ {

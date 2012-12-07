@@ -64,11 +64,11 @@ public class StockAction extends ActionSupport implements ServletRequestAware,
 	public void editStock() throws IOException {
 		try {
 			this.stockService.updateStock(stock);
-			this.response.getWriter().println("text/html; charset=UTF-8");
+			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:true, msg:'修改成功'}");
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.response.getWriter().println("text/html; charset=UTF-8");
+			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:false, msg:'修改失败'}");
 		}
 	}
