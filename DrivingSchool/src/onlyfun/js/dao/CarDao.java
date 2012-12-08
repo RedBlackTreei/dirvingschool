@@ -89,5 +89,13 @@ public interface CarDao {
 	 */
 	public List<Car> getCarList();
 	
+	/**
+	 * 更新车辆信息
+	 * @param car
+	 * @param stuId
+	 * @param coachId
+	 * void
+	 */
 	public void update(Car car,long stuId,long coachId);
+	
 }

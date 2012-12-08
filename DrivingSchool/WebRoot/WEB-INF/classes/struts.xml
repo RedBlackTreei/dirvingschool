@@ -6,92 +6,102 @@
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
-	
+
 	<package name="default" extends="json-default">
 		<!-- 用户管理 -->
 		<action name="loginAction" class="userAction" method="login">
 			<result>/index.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
-		
+
 		<!-- 新闻管理 -->
 		<action name="getNewsAction" class="newsAction" method="getNewsList">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="addNewsAction" class="newsAction" method="addNews">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="editNewsAction" class="newsAction" method="editNews">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="deleteNewsAction" class="newsAction" method="deleteNews">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<!-- 学习项目管理 -->
 		<action name="getItemsAction" class="studyItemAction" method="getItemsList">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="deleteItemAction" class="studyItemAction" method="deleteItem">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="updateItemAction" class="studyItemAction" method="updateItem">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="addItemAction" class="studyItemAction" method="addItem">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<!-- 库存管理 -->
 		<action name="getStocksAction" class="stockAction" method="getStockList">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="addStockAction" class="stockAction" method="addStock">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="deleteStockAction" class="stockAction" method="deleteStock">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="editStockAction" class="stockAction" method="editStock">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<!-- 报名点管理 -->
-		<action name="getLOSListAction" class="localOfSignAction" method="getLocalOfSignList">
-			<result type="json"/>
+		<action name="getLOSListAction" class="localOfSignAction"
+			method="getLocalOfSignList">
+			<result type="json" />
 		</action>
-		
+
 		<action name="addLOSAction" class="localOfSignAction" method="addLocalOfSign">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
-		<action name="deleteLOSAction" class="localOfSignAction" method="deleteLocalOfSign">
-			<result type="json"/>
+
+		<action name="deleteLOSAction" class="localOfSignAction"
+			method="deleteLocalOfSign">
+			<result type="json" />
 		</action>
-		
+
 		<action name="editLOSAction" class="localOfSignAction" method="editLocalOfSign">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<!-- 车辆管理 -->
 		<action name="getCarsAction" class="carAction" method="getCarList">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="editCarAction" class="carAction" method="editCar">
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
-		
+
+		<action name="getStuAction" class="carAction" method="getStuList">
+			<result type="json" />
+		</action>
+
+		<action name="getCoachesAction" class="carAction" method="getCoachList">
+			<result type="json" />
+		</action>
+
+
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->
 		<!--<action name="loginUserAction" class="userAction" method="login"> <result 
 			type="redirectAction" name="success"> <param name="actionName">listBookmarkAction</param> 

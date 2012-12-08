@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import onlyfun.js.model.Car;
+import onlyfun.js.model.Coach;
+import onlyfun.js.model.Student;
 import onlyfun.js.service.CarService;
 import onlyfun.js.uitl.Json;
 
@@ -75,8 +77,7 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 	public void editCar() throws IOException {
 		String stuIdStr = request.getParameter("sId");
 		String coachIdStr = request.getParameter("cId");
-		System.out.println("stuIdStr=" + stuIdStr + " "
-				+ stuIdStr.equals(""));
+		System.out.println("stuIdStr=" + stuIdStr + " " + stuIdStr.equals(""));
 		try {
 			if (!(stuIdStr.equals("")) && !(coachIdStr.equals(""))) {
 				long stuId = Long.parseLong(request.getParameter("sId"));
@@ -96,9 +97,53 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 			e.printStackTrace();
 			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:false, msg:'修改失败'}");
-		} finally{
+		} finally {
 			stuIdStr = null;
 			coachIdStr = null;
+		}
+	}
+
+	/**
+	 * 查询学生列表
+	 * 
+	 * @throws IOException
+	 *             void
+	 */
+	public void getStuList() throws IOException {
+		String[] key = {"personId","name","dateOfEntry","coachId"};
+		try {
+			List<Object[]> students = this.carService.getStuList();
+			List<String> list = Json.toJson(key, students);
+			String json = JSONArray.fromObject(list).toString();
+			this.response.setContentType("text/html; charset=UTF-8");
+			System.out.println(json);
+			this.response.getWriter().println(json);
+			this.response.getWriter().flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.response.setContentType("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:false, msg:'修改失败'}");
+		}
+	}
+
+	/**
+	 * 获取教练信息
+	 * 
+	 * @throws IOException
+	 *             void
+	 */
+	public void getCoachList() throws IOException {
+		try {
+			List<Coach> coaches = this.carService.getCoachList();
+			String json = JSONArray.fromObject(coaches).toString();
+			this.response.setContentType("text/html; charset=UTF-8");
+			System.out.println(json);
+			this.response.getWriter().println(json);
+			this.response.getWriter().flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.response.setContentType("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:false, msg:'获取信息失败'}");
 		}
 	}
 

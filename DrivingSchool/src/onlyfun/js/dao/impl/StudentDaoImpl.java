@@ -1,10 +1,15 @@
 package onlyfun.js.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,5 +91,19 @@ public class StudentDaoImpl implements StudentDao {
 		@SuppressWarnings("unchecked")
 		List<Student> stu = this.hibernateTemplate.find(sql, values);
 		return (stu.size() != 0);
+	}
+
+	@Transactional
+	public List<Object[]> getStudentsList() {
+		@SuppressWarnings("unchecked")
+		List<Object[]> list = this.hibernateTemplate.executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				String sql = "SELECT personId,name,dateOfEntry,coachId FROM person WHERE discriminator='student'";
+				Query q = session.createSQLQuery(sql);
+				return q.list();
+			}
+		});
+		return list;
 	}
 }

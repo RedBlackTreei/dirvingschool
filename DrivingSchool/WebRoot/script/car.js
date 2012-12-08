@@ -3,7 +3,7 @@ Ext.onReady(function() {
 	function formatDate(value) {
 		return value ? Ext.Date.dateFormat(value, 'M d, Y') : '';
 	}
-	
+
 	Ext.define('Car', {
 		extend : 'Ext.data.Model',
 		fields : [ {
@@ -138,11 +138,11 @@ Ext.onReady(function() {
 			text : '注册时间',
 			sortable : true,
 			dataIndex : 'regDate',
-			renderer: formatDate,
+			renderer : formatDate,
 			editor : {
-				xtype: 'datefield',
-                format: 'm/d/y',
-                minValue: '01/01/06',
+				xtype : 'datefield',
+				format : 'm/d/y',
+				minValue : '01/01/06',
 				allowBlank : false
 			}
 		}, {
@@ -162,12 +162,14 @@ Ext.onReady(function() {
 			hidden : true,
 			dataIndex : 'coachId'
 		} ],
-		listeners:{
-			celldblclick : function(el, td, cellIndex, record, tr, rowIndex, e,
+		listeners : {
+			cellclick : function(el, td, cellIndex, record, tr, rowIndex, e,
 					eOpts) {
-				if(cellIndex==5||cellIndex==6){
-					//alert("教练");
-					alert(record.get('id'));
+				if (cellIndex == 5 || cellIndex == 6) {
+					// alert("教练");
+					// alert(record.get('id'));
+					editStu(record);
+					alert("1");
 				}
 			}
 		},
@@ -291,11 +293,95 @@ Ext.onReady(function() {
 			}
 		});
 	}
-	
-	function editStuAndCoach(record) {
-		var stuId;
-		var coachId;
-		
+
+	function editStu(record) {
+
+		Ext.define('Student', {
+			extend : 'Ext.data.Model',
+			fields : [ {
+				name : 'personId',
+				type : 'string'
+			}, {
+				name : 'name',
+				type : 'string'
+			}, {
+				name : 'dateOfEntry',
+				type : 'string'
+			}, {
+				name : 'coachId',
+				type : 'string'
+			} ]
+		});
+
+		var stuStore = Ext.create('Ext.data.Store', {
+			model : 'Student',
+			proxy : {
+				type : 'ajax',
+				url : 'getStuAction',
+				reader : 'json'
+			},
+			autoLoad : true
+		});
+
+		// var stuGrid = Ext.create('Ext.grid.Panel', {
+		// layout : 'fit',
+		// store : stuStore,
+		// columns : [ {
+		// text : 'id',
+		// // xtype : 'hidden',
+		// dataIndex : 'personId',
+		// hidden : true
+		// }, {
+		// text : '姓名',
+		// dataIndex : 'name'
+		// }, {
+		// text : '入学时间',
+		// dataIndex : 'dateOfEntry'
+		// }, {
+		// text : 'coachId',
+		// dataIndex : 'coachId',
+		// hidden : 'true'
+		// } ]
+		// });
+
+		var stuGrid = Ext.create('Ext.grid.Panel', {
+			id : 'stuList',
+			layout : 'fit',
+			height : '100%',
+			// frame : true,
+			store : stuStore,
+			columns : [ {
+				text : 'id',
+				// xtype : 'hidden',
+				hidden : true,
+				dataIndex : 'personId'
+			}, {
+				text : '姓名',
+				flex : 0.3,
+				sortable : true,
+				dataIndex : 'name'
+			}, {
+				text : '入学时间',
+				sortable : true,
+				flex : 0.6,
+				dataIndex : 'dateOfEntry'
+			}, {
+				text : 'coachId',
+				sortable : true,
+				flex : 0.1,
+				hidden : true,
+				dataIndex : 'coachId'
+			} ]
+		});
+
+		var win = Ext.create('Ext.window.Window', {
+			width : 700,
+			height : 600,
+			title : '设置学生',
+			items : [ stuGrid ]
+		});
+		win.show();
+
 	}
 
 });

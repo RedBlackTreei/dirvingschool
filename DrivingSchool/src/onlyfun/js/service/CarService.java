@@ -3,6 +3,8 @@ package onlyfun.js.service;
 import java.util.List;
 
 import onlyfun.js.model.Car;
+import onlyfun.js.model.Coach;
+import onlyfun.js.model.Student;
 
 /**
  * 车辆管理
@@ -57,5 +59,26 @@ public interface CarService {
 	 */
 	public void update(Car car);
 	
+	/**
+	 * 更新车辆信息，包括使用者
+	 * @param car 车辆实体
+	 * @param stuId 学生id
+	 * @param coachId 教练id
+	 * void
+	 */
 	public void update(Car car,long stuId,long coachId);
+	
+	/**
+	 * 获取教练列表
+	 * @return
+	 * List<Coach>
+	 */
+	public List<Coach> getCoachList();
+	
+	/**
+	 * 获取学生列表
+	 * @return
+	 * List<Student>
+	 */
+	public List<Object[]> getStuList();
 }

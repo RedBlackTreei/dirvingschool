@@ -52,4 +52,6 @@ public interface StudentDao {
 	 * 登录
 	 */
 	public boolean login(String username, String password);
+	
+	public List<Object[]> getStudentsList();
 }

@@ -7,7 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import onlyfun.js.dao.CarDao;
+import onlyfun.js.dao.CoachDao;
+import onlyfun.js.dao.StudentDao;
 import onlyfun.js.model.Car;
+import onlyfun.js.model.Coach;
+import onlyfun.js.model.Student;
 import onlyfun.js.service.CarService;
 
 /**
@@ -25,6 +29,8 @@ import onlyfun.js.service.CarService;
 public class CarServiceImpl implements CarService {
 
 	private CarDao carDao;
+	private CoachDao caochDao;
+	private StudentDao stuDao;
 
 	@Override
 	public List<Car> getCarList() {
@@ -63,11 +69,23 @@ public class CarServiceImpl implements CarService {
 		List<Object[]> cars = this.carDao.getCarListWithUser();
 		return cars;
 	}
+	
+
+	@Override
+	public List<Coach> getCoachList() {
+		List<Coach> coaches = this.caochDao.getCoach();
+		return coaches;
+	}
+
+	@Override
+	public List<Object[]> getStuList() {
+		List<Object[]> students = this.stuDao.getStudentsList();
+		return students;
+	}
 
 	@Override
 	public void update(Car car, long stuId, long coachId) {
 		this.carDao.update(car, stuId, coachId);
-		
 	}
 	
 	public CarDao getCarDao() {
@@ -77,6 +95,24 @@ public class CarServiceImpl implements CarService {
 	@Resource
 	public void setCarDao(CarDao carDao) {
 		this.carDao = carDao;
+	}
+
+	public CoachDao getCaochDao() {
+		return caochDao;
+	}
+
+	@Resource
+	public void setCaochDao(CoachDao caochDao) {
+		this.caochDao = caochDao;
+	}
+
+	public StudentDao getStuDao() {
+		return stuDao;
+	}
+
+	@Resource
+	public void setStuDao(StudentDao stuDao) {
+		this.stuDao = stuDao;
 	}
 
 }
