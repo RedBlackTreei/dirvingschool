@@ -40,8 +40,8 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public Car getCarById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Car car = this.carDao.getCarById(id);
+		return car;
 	}
 
 	@Override
@@ -87,6 +87,40 @@ public class CarServiceImpl implements CarService {
 	public void update(Car car, long stuId, long coachId) {
 		this.carDao.update(car, stuId, coachId);
 	}
+
+	@Override
+	public void updateStu(Car car, String stuId) {
+		Student stu = this.getStu(stuId);
+		car.setStudent(stu);
+		this.carDao.update(car);
+	}
+
+	@Override
+	public void updateCoach(Car car, String coachId) {
+		Coach coach = this.getCoach(coachId);
+		System.out.println(coach.getName());
+		car.setCoach(coach);
+		this.carDao.update(car);
+	}
+	
+	private Student getStu(String stuId){
+		if(!stuId.equals("")){
+			long sId = Long.parseLong(stuId);
+			return this.stuDao.getStudentById(sId);
+		} else {
+			return null;
+		}
+	}
+	
+	private Coach getCoach(String coachId){
+		if(!coachId.equals("")){
+			long cId = Long.parseLong(coachId);
+			return this.caochDao.getCoachById(cId);
+		} else {
+			return null;
+		}
+	}
+	
 	
 	public CarDao getCarDao() {
 		return carDao;

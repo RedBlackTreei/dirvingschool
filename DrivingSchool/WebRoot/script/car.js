@@ -98,7 +98,7 @@ Ext.onReady(function() {
 		layout : 'fit',
 		// width : 600,
 		height : '100%',
-		frame : true,
+		//frame : true,
 		store : store,
 		plugins : [ rowEditing ],
 		selType : 'rowmodel',
@@ -166,10 +166,7 @@ Ext.onReady(function() {
 			cellclick : function(el, td, cellIndex, record, tr, rowIndex, e,
 					eOpts) {
 				if (cellIndex == 5 || cellIndex == 6) {
-					// alert("教练");
-					// alert(record.get('id'));
 					editStu(record);
-					alert("1");
 				}
 			}
 		},
@@ -323,31 +320,9 @@ Ext.onReady(function() {
 			autoLoad : true
 		});
 
-		// var stuGrid = Ext.create('Ext.grid.Panel', {
-		// layout : 'fit',
-		// store : stuStore,
-		// columns : [ {
-		// text : 'id',
-		// // xtype : 'hidden',
-		// dataIndex : 'personId',
-		// hidden : true
-		// }, {
-		// text : '姓名',
-		// dataIndex : 'name'
-		// }, {
-		// text : '入学时间',
-		// dataIndex : 'dateOfEntry'
-		// }, {
-		// text : 'coachId',
-		// dataIndex : 'coachId',
-		// hidden : 'true'
-		// } ]
-		// });
-
 		var stuGrid = Ext.create('Ext.grid.Panel', {
 			id : 'stuList',
 			layout : 'fit',
-			height : '100%',
 			// frame : true,
 			store : stuStore,
 			columns : [ {
@@ -371,12 +346,18 @@ Ext.onReady(function() {
 				flex : 0.1,
 				hidden : true,
 				dataIndex : 'coachId'
-			} ]
+			}],
+			listeners : {
+				itemdblclick: function( view, record, item, index, e, eOpts ){
+					alert("test");
+					alert(record.get('personId'));
+				}
+			}
 		});
 
 		var win = Ext.create('Ext.window.Window', {
-			width : 700,
-			height : 600,
+			width : 400,
+			height : 300,
 			title : '设置学生',
 			items : [ stuGrid ]
 		});

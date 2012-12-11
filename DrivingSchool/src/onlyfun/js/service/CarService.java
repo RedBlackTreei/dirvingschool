@@ -4,7 +4,6 @@ import java.util.List;
 
 import onlyfun.js.model.Car;
 import onlyfun.js.model.Coach;
-import onlyfun.js.model.Student;
 
 /**
  * 车辆管理
@@ -81,4 +80,8 @@ public interface CarService {
 	 * List<Student>
 	 */
 	public List<Object[]> getStuList();
+	
+	public void updateStu(Car car, String stuId);
+	
+	public void updateCoach(Car car, String coachId);
 }

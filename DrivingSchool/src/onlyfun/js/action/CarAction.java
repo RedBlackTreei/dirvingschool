@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import onlyfun.js.model.Car;
 import onlyfun.js.model.Coach;
-import onlyfun.js.model.Student;
 import onlyfun.js.service.CarService;
 import onlyfun.js.uitl.Json;
 
@@ -144,6 +143,15 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 			e.printStackTrace();
 			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:false, msg:'获取信息失败'}");
+		}
+	}
+	
+	public void setStudent(){
+		try {
+			//long id
+			this.carService.update(car);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 

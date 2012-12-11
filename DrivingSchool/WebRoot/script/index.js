@@ -58,6 +58,7 @@ Ext.onReady(function() {
 	var treePanel = Ext.create('Ext.tree.Panel', {
 		// layout: 'anchor',
 		region : 'west',
+		frame : true,
 		layout : {
 			anchor : '100%,100%'
 		},
@@ -114,6 +115,7 @@ Ext.onReady(function() {
 			region : 'south',
 			html : 'copyright@js,2012-2020',
 			split : true,
+			frame :true,
 			height : 100
 		}, {
 			region : 'center',
@@ -127,7 +129,8 @@ Ext.onReady(function() {
 			items : {
 				title : '首页',
 				html : '欢迎使用驾校资源管理系统...',
-				border:true
+				//border:true
+				//frame : true
 			}
 		} ]
 	});
