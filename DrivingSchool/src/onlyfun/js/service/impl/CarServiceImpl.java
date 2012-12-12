@@ -89,9 +89,27 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public void updateStu(Car car, String stuId) {
+	public void updateStu(String carId, String stuId, String coachId) {
 		Student stu = this.getStu(stuId);
+		Coach coach = this.getCoach(coachId);
+		Car car = this.getCar(carId);
+//		System.out.println("student name----"+stu.getName());
+//		System.out.println("coach name----"+coach.getName());
+//		System.out.println("car-----" + car.getPlateNum());
+//		String plateNum = car.getPlateNum();
+//		String regDate = car.getRegDate();
+//		String remark = car.getRemark();
+//		String type = car.getType();
+//		car.setStudent(stu);
+//		car.setCoach(coach);
+//		car.setPlateNum(plateNum);
+//		car.setRegDate(regDate);
+//		car.setRemark(remark);
+//		car.setType(type);
+		System.out.println("student name----"+stu.getName());
+		System.out.println("coach name----"+coach.getName());
 		car.setStudent(stu);
+		car.setCoach(coach);
 		this.carDao.update(car);
 	}
 
@@ -107,6 +125,15 @@ public class CarServiceImpl implements CarService {
 		if(!stuId.equals("")){
 			long sId = Long.parseLong(stuId);
 			return this.stuDao.getStudentById(sId);
+		} else {
+			return null;
+		}
+	}
+	
+	private Car getCar(String carId) {
+		if(!carId.equals("")){
+			long cId = Long.parseLong(carId);
+			return this.carDao.getCarById(cId);
 		} else {
 			return null;
 		}

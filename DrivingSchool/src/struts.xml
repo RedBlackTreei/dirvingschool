@@ -100,6 +100,10 @@
 		<action name="getCoachesAction" class="carAction" method="getCoachList">
 			<result type="json" />
 		</action>
+		
+		<action name="updateStuAction" class="carAction" method="updateStudent">
+			<result type="json" />
+		</action>
 
 
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->

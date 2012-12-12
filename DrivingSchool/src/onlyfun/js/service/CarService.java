@@ -81,7 +81,7 @@ public interface CarService {
 	 */
 	public List<Object[]> getStuList();
 	
-	public void updateStu(Car car, String stuId);
+	public void updateStu(String carId, String stuId, String coachId);
 	
 	public void updateCoach(Car car, String coachId);
 }

@@ -247,7 +247,7 @@ Ext.onReady(function() {
 		var win = Ext.create('Ext.window.Window', {
 			layout : 'fit',
 			width : 400,
-			title : '删除库存',
+			title : '添加库存',
 			items : [ addForm ]
 		});
 		win.show();

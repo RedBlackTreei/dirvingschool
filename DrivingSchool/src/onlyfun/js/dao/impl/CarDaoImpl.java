@@ -170,4 +170,9 @@ public class CarDaoImpl implements CarDao {
 		this.hibernateTemplate.update(car);
 	}
 
+	@Transactional
+	public void updateStu(long stuId) {
+		
+	}
+
 }

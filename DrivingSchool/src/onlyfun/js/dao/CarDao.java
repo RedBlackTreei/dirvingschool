@@ -98,4 +98,6 @@ public interface CarDao {
 	 */
 	public void update(Car car,long stuId,long coachId);
 	
+	public void updateStu(long stuId);
+	
 }

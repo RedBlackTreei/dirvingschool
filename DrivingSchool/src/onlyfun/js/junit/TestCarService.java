@@ -1,6 +1,5 @@
 package onlyfun.js.junit;
 
-import static org.junit.Assert.*;
 
 import onlyfun.js.model.Car;
 import onlyfun.js.service.CarService;

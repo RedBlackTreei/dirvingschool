@@ -59,9 +59,9 @@ Ext.onReady(function() {
 						'car.plateNum' : record.get('plateNum'),
 						'car.regDate' : record.get('regDate'),
 						'car.remark' : record.get('remark'),
-						'car.type' : record.get('type'),
-						'sId' : record.get('stuId'),
-						'cId' : record.get('coachId')
+						'car.type' : record.get('type')
+						//'car.student.personId' : record.get('stuId'),
+						//'car.coach.personId' : record.get('coachId')
 					},
 					success : function(response) {
 						store.reload();
@@ -291,7 +291,7 @@ Ext.onReady(function() {
 		});
 	}
 
-	function editStu(record) {
+	function editStu(recordOfCar) {
 
 		Ext.define('Student', {
 			extend : 'Ext.data.Model',
@@ -349,8 +349,26 @@ Ext.onReady(function() {
 			}],
 			listeners : {
 				itemdblclick: function( view, record, item, index, e, eOpts ){
-					alert("test");
-					alert(record.get('personId'));
+					Ext.Ajax.request({
+						url : 'updateStuAction',
+						params : {
+							carId : recordOfCar.get('id'),
+							stuId : record.get('personId'),
+							coachId : recordOfCar.get('coachId')
+						},
+						method : 'post',
+						success : function(response) {
+							var json = Ext.JSON.decode(response.responseText);
+							Ext.Msg.alert('成功', json.msg);
+							store.reload();
+							win.close();
+						},
+						failure : function(response) {
+							var json = Ext.JSON.decode(response.responseText);
+							Ext.Msg.alert('失败', json.msg);
+						}
+					});
+					
 				}
 			}
 		});
@@ -362,7 +380,5 @@ Ext.onReady(function() {
 			items : [ stuGrid ]
 		});
 		win.show();
-
 	}
-
 });
