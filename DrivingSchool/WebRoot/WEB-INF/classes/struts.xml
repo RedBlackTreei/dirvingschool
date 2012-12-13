@@ -101,7 +101,7 @@
 			<result type="json" />
 		</action>
 		
-		<action name="updateStuAction" class="carAction" method="updateStudent">
+		<action name="updateUserAction" class="carAction" method="updateUserOfCar">
 			<result type="json" />
 		</action>
 

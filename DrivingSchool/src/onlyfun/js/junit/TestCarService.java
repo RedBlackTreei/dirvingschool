@@ -51,8 +51,8 @@ public class TestCarService {
 	 */
 	@Test
 	public final void testUpdateStu() {
-		Car car = this.cs.getCarById(7);
-		this.cs.updateStu(car, "3");
+		//Car car = this.cs.getCarById(7);
+		//this.cs.updateStu(car, "3");
 	}
 
 	/**
@@ -60,9 +60,9 @@ public class TestCarService {
 	 */
 	@Test
 	public final void testUpdateCoach() {
-		Car car = this.cs.getCarById(7);
-		System.out.println(car.getPlateNum());
-		this.cs.updateCoach(car, "13");
+//		Car car = this.cs.getCarById(7);
+//		System.out.println(car.getPlateNum());
+//		this.cs.updateCoach(car, "13");
 	}
 
 }

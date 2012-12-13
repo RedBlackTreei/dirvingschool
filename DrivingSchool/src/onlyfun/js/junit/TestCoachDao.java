@@ -73,6 +73,14 @@ public class TestCoachDao {
 		coach.setTel("15280774223");
 		dao.addCoach(coach);
 	}
+	
+	@Test
+	public void getCoaches(){
+		List<Object[]> list = dao.getCoaches();
+		for (Object[] objects : list) {
+			System.out.println(objects[0].toString());
+		}
+	}
 
 	@Test
 	public void testLogin() {

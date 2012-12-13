@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import onlyfun.js.model.Car;
-import onlyfun.js.model.Coach;
-import onlyfun.js.model.Student;
 import onlyfun.js.service.CarService;
 import onlyfun.js.uitl.Json;
 
@@ -38,8 +36,6 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 
 	private static final long serialVersionUID = 9222513308560769468L;
 	private Car car;
-	private Student student;
-	private Coach coach;
 	private CarService carService;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -77,38 +73,13 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 	 *             void
 	 */
 	public void editCar() throws IOException {
-		// String stuIdStr = request.getParameter("sId");
-		// String coachIdStr = request.getParameter("cId");
-		// System.out.println("stuIdStr=" + stuIdStr + " " +
-		// stuIdStr.equals(""));
-		// try {
-		// if (!(stuIdStr.equals("")) && !(coachIdStr.equals(""))) {
-		// long stuId = Long.parseLong(request.getParameter("sId"));
-		// long coachId = Long.parseLong(request.getParameter("cId"));
-		// System.out.println("stuId" + stuId);
-		// this.carService.update(car, stuId, coachId);
-		// } else {
-		// car.setCoach(null);
-		// car.setStudent(null);
-		// this.carService.update(car);
-		// }
-		//
-		// this.response.setContentType("text/html; charset=UTF-8");
-		// this.response.getWriter().println("{success:true, msg:'修改成功'}");
-		// this.response.getWriter().flush();
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// this.response.setContentType("text/html; charset=UTF-8");
-		// this.response.getWriter().println("{success:false, msg:'修改失败'}");
-		// } finally {
-		// stuIdStr = null;
-		// coachIdStr = null;
-		// }
-
+		String stuId = request.getParameter("stuId");
+		String coachId = request.getParameter("coachId");
 		try {
-			this.carService.update(car);
+			this.carService.update(car, stuId, coachId);
 			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:true, msg:'修改成功'}");
+			this.response.getWriter().flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.response.setContentType("text/html; charset=UTF-8");
@@ -146,9 +117,11 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 	 *             void
 	 */
 	public void getCoachList() throws IOException {
+		String[] key = { "personId", "name", "dateOfEntry" };
 		try {
-			List<Coach> coaches = this.carService.getCoachList();
-			String json = JSONArray.fromObject(coaches).toString();
+			List<Object[]> coaches = this.carService.getCoachList();
+			List<String> list = Json.toJson(key, coaches);
+			String json = JSONArray.fromObject(list).toString();
 			this.response.setContentType("text/html; charset=UTF-8");
 			System.out.println(json);
 			this.response.getWriter().println(json);
@@ -161,18 +134,18 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 	}
 
 	/**
-	 * 设置车辆的使用学生
+	 * 设置车辆的使用者
 	 * 
 	 * @throws IOException
 	 *             void
 	 */
-	public void updateStudent() throws IOException {
+	public void updateUserOfCar() throws IOException {
 		try {
 			String stuId = request.getParameter("stuId");
 			String coachId = request.getParameter("coachId");
 			String carId = request.getParameter("carId");
 			System.out.println("carId-----" + carId);
-			this.carService.updateStu(carId, stuId, coachId);
+			this.carService.updateUser(carId, stuId, coachId);
 			this.response.setContentType("text/html; charset=UTF-8");
 			this.response.getWriter().println("{success:false, msg:'修改成功'}");
 		} catch (Exception e) {
@@ -198,22 +171,6 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 
 	public void setCar(Car car) {
 		this.car = car;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public Coach getCoach() {
-		return coach;
-	}
-
-	public void setCoach(Coach coach) {
-		this.coach = coach;
 	}
 
 	public CarService getCarService() {

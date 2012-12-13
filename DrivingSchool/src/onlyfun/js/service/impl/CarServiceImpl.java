@@ -72,9 +72,9 @@ public class CarServiceImpl implements CarService {
 	
 
 	@Override
-	public List<Coach> getCoachList() {
-		List<Coach> coaches = this.caochDao.getCoach();
-		return coaches;
+	public List<Object[]> getCoachList() {
+		List<Object[]> list = this.caochDao.getCoaches();
+		return list;
 	}
 
 	@Override
@@ -84,39 +84,18 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public void update(Car car, long stuId, long coachId) {
-		this.carDao.update(car, stuId, coachId);
-	}
-
-	@Override
-	public void updateStu(String carId, String stuId, String coachId) {
-		Student stu = this.getStu(stuId);
-		Coach coach = this.getCoach(coachId);
-		Car car = this.getCar(carId);
-//		System.out.println("student name----"+stu.getName());
-//		System.out.println("coach name----"+coach.getName());
-//		System.out.println("car-----" + car.getPlateNum());
-//		String plateNum = car.getPlateNum();
-//		String regDate = car.getRegDate();
-//		String remark = car.getRemark();
-//		String type = car.getType();
-//		car.setStudent(stu);
-//		car.setCoach(coach);
-//		car.setPlateNum(plateNum);
-//		car.setRegDate(regDate);
-//		car.setRemark(remark);
-//		car.setType(type);
-		System.out.println("student name----"+stu.getName());
-		System.out.println("coach name----"+coach.getName());
-		car.setStudent(stu);
-		car.setCoach(coach);
+	public void update(Car car, String stuId, String coachId) {
+		car.setCoach(getCoach(coachId));
+		car.setStudent(getStu(stuId));
 		this.carDao.update(car);
 	}
 
 	@Override
-	public void updateCoach(Car car, String coachId) {
+	public void updateUser(String carId, String stuId, String coachId) {
+		Student stu = this.getStu(stuId);
 		Coach coach = this.getCoach(coachId);
-		System.out.println(coach.getName());
+		Car car = this.getCar(carId);
+		car.setStudent(stu);
 		car.setCoach(coach);
 		this.carDao.update(car);
 	}

@@ -59,9 +59,9 @@ Ext.onReady(function() {
 						'car.plateNum' : record.get('plateNum'),
 						'car.regDate' : record.get('regDate'),
 						'car.remark' : record.get('remark'),
-						'car.type' : record.get('type')
-						//'car.student.personId' : record.get('stuId'),
-						//'car.coach.personId' : record.get('coachId')
+						'car.type' : record.get('type'),
+						'stuId' : record.get('stuId'),
+						'coachId' : record.get('coachId')
 					},
 					success : function(response) {
 						store.reload();
@@ -165,8 +165,10 @@ Ext.onReady(function() {
 		listeners : {
 			cellclick : function(el, td, cellIndex, record, tr, rowIndex, e,
 					eOpts) {
-				if (cellIndex == 5 || cellIndex == 6) {
+				if (cellIndex == 5) {
 					editStu(record);
+				} else if(cellIndex ==6) {
+					editCoach(record);
 				}
 			}
 		},
@@ -271,6 +273,7 @@ Ext.onReady(function() {
 		});
 		win.show();
 	}
+	
 	function deleteStores(records) {
 		var id = records[0].get('id');
 		Ext.Ajax.request({
@@ -350,7 +353,7 @@ Ext.onReady(function() {
 			listeners : {
 				itemdblclick: function( view, record, item, index, e, eOpts ){
 					Ext.Ajax.request({
-						url : 'updateStuAction',
+						url : 'updateUserAction',
 						params : {
 							carId : recordOfCar.get('id'),
 							stuId : record.get('personId'),
@@ -380,5 +383,88 @@ Ext.onReady(function() {
 			items : [ stuGrid ]
 		});
 		win.show();
+	}
+	
+	function editCoach(recordOfCar) {
+
+
+		Ext.define('Coach', {
+			extend : 'Ext.data.Model',
+			fields : [ {
+				name : 'personId',
+				type : 'string'
+			}, {
+				name : 'name',
+				type : 'string'
+			}, {
+				name : 'dateOfEntry',
+				type : 'string'
+			}]
+		});
+
+		var coachStore = Ext.create('Ext.data.Store', {
+			model : 'Coach',
+			proxy : {
+				type : 'ajax',
+				url : 'getCoachesAction',
+				reader : 'json'
+			},
+			autoLoad : true
+		});
+
+		var coachGrid = Ext.create('Ext.grid.Panel', {
+			id : 'coachStore',
+			layout : 'fit',
+			// frame : true,
+			store : coachStore,
+			columns : [ {
+				text : 'id',
+				// xtype : 'hidden',
+				hidden : true,
+				dataIndex : 'personId'
+			}, {
+				text : '姓名',
+				flex : 0.3,
+				sortable : true,
+				dataIndex : 'name'
+			}, {
+				text : '入职时间',
+				sortable : true,
+				flex : 0.6,
+				dataIndex : 'dateOfEntry'
+			}],
+			listeners : {
+				itemdblclick: function( view, record, item, index, e, eOpts ){
+					Ext.Ajax.request({
+						url : 'updateUserAction',
+						params : {
+							carId : recordOfCar.get('id'),
+							coachId : record.get('personId'),
+							stuId : recordOfCar.get('stuId')
+						},
+						method : 'post',
+						success : function(response) {
+							var json = Ext.JSON.decode(response.responseText);
+							Ext.Msg.alert('成功', json.msg);
+							store.reload();
+							win.close();
+						},
+						failure : function(response) {
+							var json = Ext.JSON.decode(response.responseText);
+							Ext.Msg.alert('失败', json.msg);
+						}
+					});
+				}
+			}
+		});
+
+		var win = Ext.create('Ext.window.Window', {
+			width : 400,
+			height : 300,
+			title : '设置教练',
+			items : [ coachGrid ]
+		});
+		win.show();
+	
 	}
 });

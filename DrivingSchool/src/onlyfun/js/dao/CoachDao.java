@@ -57,4 +57,11 @@ public interface CoachDao {
 	 * 登录
 	 */
 	public boolean login(String username, String password);
+	
+	/**
+	 * 获取教练列表
+	 * @return
+	 * List<Object[]>
+	 */
+	public List<Object[]> getCoaches();
 }
