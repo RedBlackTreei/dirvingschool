@@ -48,7 +48,7 @@ public class Car {
 		this.regDate = regDate;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "coachId")
 	public Coach getCoach() {
 		return coach;
@@ -66,7 +66,7 @@ public class Car {
 		this.remark = remark;
 	}
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "stuId")
 	public Student getStudent() {
 		return student;

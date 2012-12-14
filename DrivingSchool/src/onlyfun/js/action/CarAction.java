@@ -154,6 +154,40 @@ public class CarAction extends ActionSupport implements ServletRequestAware,
 			this.response.getWriter().println("{success:false, msg:'修改失败'}");
 		}
 	}
+	
+	/**
+	 * 删除车辆
+	 * @throws IOException
+	 * void
+	 */
+	public void deleteCar() throws IOException {
+		try {
+			long id = Long.parseLong(request.getParameter("id"));
+			this.carService.deleteCayById(id);
+			this.response.setContentType("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:false, msg:'删除成功'}");
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.response.setContentType("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:false, msg:'删除失败'}");
+		}
+	}
+	
+	/**
+	 * 添加车辆
+	 * @throws IOException
+	 * void
+	 */
+	public void addCar() throws IOException {
+		try {
+			this.carService.addCar(car);
+			this.response.setContentType("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:true, msg:'添加成功'}");
+		} catch (Exception e) {
+			this.response.setContentType("text/html; charset=UTF-8");
+			this.response.getWriter().println("{success:false, msg:'添加失败'}");
+		}
+	}
 
 	@Override
 	public void setServletResponse(HttpServletResponse response) {

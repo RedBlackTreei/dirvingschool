@@ -1,9 +1,8 @@
 Ext.onReady(function() {
-
 	function formatDate(value) {
 		return value ? Ext.Date.dateFormat(value, 'M d, Y') : '';
 	}
-
+	
 	Ext.define('Car', {
 		extend : 'Ext.data.Model',
 		fields : [ {
@@ -98,7 +97,7 @@ Ext.onReady(function() {
 		layout : 'fit',
 		// width : 600,
 		height : '100%',
-		//frame : true,
+		// frame : true,
 		store : store,
 		plugins : [ rowEditing ],
 		selType : 'rowmodel',
@@ -167,7 +166,7 @@ Ext.onReady(function() {
 					eOpts) {
 				if (cellIndex == 5) {
 					editStu(record);
-				} else if(cellIndex ==6) {
+				} else if (cellIndex == 6) {
 					editCoach(record);
 				}
 			}
@@ -176,7 +175,7 @@ Ext.onReady(function() {
 				{
 					text : '添加',
 					handler : function() {
-						addStores();
+						addCar();
 					}
 				},
 				'-',
@@ -189,7 +188,7 @@ Ext.onReady(function() {
 							Ext.Msg.confirm("<font color='red'>系统提示</font>",
 									"您确定要删除选择的数据吗?", function(btn) {
 										if (btn == "yes") {
-											deleteStores(record);
+											deleteCar(record);
 										}
 									});
 						} else {
@@ -199,7 +198,7 @@ Ext.onReady(function() {
 				} ]
 	});
 
-	function addStores() {
+	function addCar() {
 		var addForm = Ext.create('Ext.form.Panel', {
 			bodyPadding : 5,
 			// Fields will be arranged vertically, stretched to full width
@@ -207,33 +206,28 @@ Ext.onReady(function() {
 			frame : true,
 			bodyBorder : false,
 			// The form will submit an AJAX request to this URL when submitted
-			url : 'addStockAction',
+			url : 'addCarAction',
 			items : [ {
-				fieldLabel : '名称',
+				fieldLabel : '车牌号码',
 				xtype : 'textfield',
 				maxValue : 200,
 				minValue : 1,
-				name : 'stock.storesName',
+				name : 'car.plateNum',
 				allowBlank : false
 			}, {
-				fieldLabel : '编号',
+				fieldLabel : '注册日期',
+				xtype : 'datefield',
+				name : 'car.regDate',
+				allowBlank : false
+			}, {
+				fieldLabel : '备注',
 				xtype : 'textfield',
-				name : 'stock.storesId',
+				name : 'car.remark',
 				allowBlank : false
 			}, {
-				fieldLabel : '价格',
+				fieldLabel : '类型',
 				xtype : 'numberfield',
-				name : 'stock.price',
-				allowBlank : false
-			}, {
-				fieldLabel : '当前数量',
-				xtype : 'numberfield',
-				name : 'stock.currentNum',
-				allowBlank : false
-			}, {
-				fieldLabel : '最低需求',
-				xtype : 'numberfield',
-				name : 'stock.minNum',
+				name : 'car.type',
 				allowBlank : false
 			} ],
 
@@ -247,12 +241,12 @@ Ext.onReady(function() {
 					if (form.isValid()) {
 						form.submit({
 							success : function(form, action) {
-								Ext.Msg.alert('成功', action.result.msg);
+								///Ext.Msg.alert('成功', action.result.msg);
 								store.reload();
 								win.close();
 							},
 							failure : function(form, action) {
-								Ext.Msg.alert('失败', action.result.msg);
+								//Ext.Msg.alert('失败', action.result.msg);
 							}
 						});
 					}
@@ -268,28 +262,28 @@ Ext.onReady(function() {
 		var win = Ext.create('Ext.window.Window', {
 			layout : 'fit',
 			width : 400,
-			title : '删除库存',
+			title : '添加车辆',
 			items : [ addForm ]
 		});
 		win.show();
 	}
-	
-	function deleteStores(records) {
+
+	function deleteCar(records) {
 		var id = records[0].get('id');
 		Ext.Ajax.request({
-			url : 'deleteStockAction',
+			url : 'deleteCarAction',
 			params : {
 				id : id
 			},
 			method : 'post',
 			success : function(response) {
-				var json = Ext.JSON.decode(response.responseText);
-				Ext.Msg.alert('成功', json.msg);
+				//var json = Ext.JSON.decode(response.responseText);
+				//Ext.Msg.alert('成功', json.msg);
 				store.reload();
 			},
 			failure : function(response) {
-				var json = Ext.JSON.decode(response.responseText);
-				Ext.Msg.alert('失败', json.msg);
+				//var json = Ext.JSON.decode(response.responseText);
+				//Ext.Msg.alert('失败', json.msg);
 			}
 		});
 	}
@@ -349,9 +343,9 @@ Ext.onReady(function() {
 				flex : 0.1,
 				hidden : true,
 				dataIndex : 'coachId'
-			}],
+			} ],
 			listeners : {
-				itemdblclick: function( view, record, item, index, e, eOpts ){
+				itemdblclick : function(view, record, item, index, e, eOpts) {
 					Ext.Ajax.request({
 						url : 'updateUserAction',
 						params : {
@@ -362,16 +356,16 @@ Ext.onReady(function() {
 						method : 'post',
 						success : function(response) {
 							var json = Ext.JSON.decode(response.responseText);
-							Ext.Msg.alert('成功', json.msg);
+							//Ext.Msg.alert('成功', json.msg);
 							store.reload();
 							win.close();
 						},
 						failure : function(response) {
-							var json = Ext.JSON.decode(response.responseText);
-							Ext.Msg.alert('失败', json.msg);
+							//var json = Ext.JSON.decode(response.responseText);
+							//Ext.Msg.alert('失败', json.msg);
 						}
 					});
-					
+
 				}
 			}
 		});
@@ -384,9 +378,8 @@ Ext.onReady(function() {
 		});
 		win.show();
 	}
-	
-	function editCoach(recordOfCar) {
 
+	function editCoach(recordOfCar) {
 
 		Ext.define('Coach', {
 			extend : 'Ext.data.Model',
@@ -399,7 +392,7 @@ Ext.onReady(function() {
 			}, {
 				name : 'dateOfEntry',
 				type : 'string'
-			}]
+			} ]
 		});
 
 		var coachStore = Ext.create('Ext.data.Store', {
@@ -432,9 +425,9 @@ Ext.onReady(function() {
 				sortable : true,
 				flex : 0.6,
 				dataIndex : 'dateOfEntry'
-			}],
+			} ],
 			listeners : {
-				itemdblclick: function( view, record, item, index, e, eOpts ){
+				itemdblclick : function(view, record, item, index, e, eOpts) {
 					Ext.Ajax.request({
 						url : 'updateUserAction',
 						params : {
@@ -444,14 +437,14 @@ Ext.onReady(function() {
 						},
 						method : 'post',
 						success : function(response) {
-							var json = Ext.JSON.decode(response.responseText);
-							Ext.Msg.alert('成功', json.msg);
+							//var json = Ext.JSON.decode(response.responseText);
+							//Ext.Msg.alert('成功', json.msg);
 							store.reload();
 							win.close();
 						},
 						failure : function(response) {
-							var json = Ext.JSON.decode(response.responseText);
-							Ext.Msg.alert('失败', json.msg);
+							//var json = Ext.JSON.decode(response.responseText);
+							//Ext.Msg.alert('失败', json.msg);
 						}
 					});
 				}
@@ -465,6 +458,6 @@ Ext.onReady(function() {
 			items : [ coachGrid ]
 		});
 		win.show();
-	
+
 	}
 });

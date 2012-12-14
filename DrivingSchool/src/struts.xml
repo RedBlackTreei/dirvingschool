@@ -104,6 +104,14 @@
 		<action name="updateUserAction" class="carAction" method="updateUserOfCar">
 			<result type="json" />
 		</action>
+		
+		<action name="deleteCarAction" class="carAction" method="deleteCar">
+			<result type="json" />
+		</action>
+		
+		<action name="addCarAction" class="carAction" method="addCar">
+			<result type="json" />
+		</action>
 
 
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->
