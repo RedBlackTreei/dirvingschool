@@ -128,7 +128,7 @@ Ext.onReady(function() {
 			// First tab active by default,
 			items : {
 				title : '首页',
-				html : '欢迎使用驾校资源管理系统...',
+				html : '欢迎使用驾校资源管理系统...'
 				//border:true
 				//frame : true
 			}

@@ -194,7 +194,7 @@ Ext.onReady(function() {
 				xtype : 'textfield',
 				name : 'news.id',
 				value : model.get('id'),
-				hidden : true,
+				hidden : true
 			}, {
 				fieldLabel : '标题',
 				xtype : 'textfield',

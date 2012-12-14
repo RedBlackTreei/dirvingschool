@@ -27,7 +27,7 @@ Ext.onReady(function() {
 				destory : 'deleteItemAction'
 			},
 			reader : {
-				type : 'json',
+				type : 'json'
 			}
 		},
 		listeners : {
