@@ -1,7 +1,6 @@
 package onlyfun.js.junit;
 
 
-import onlyfun.js.model.Car;
 import onlyfun.js.service.CarService;
 
 import org.junit.After;
