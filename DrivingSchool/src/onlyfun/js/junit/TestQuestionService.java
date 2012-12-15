@@ -2,16 +2,10 @@ package onlyfun.js.junit;
 
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.PropertyFilter;
 import onlyfun.js.model.Question;
-import onlyfun.js.model.QuestionItem;
 import onlyfun.js.service.QuestionService;
 
 import org.junit.After;

@@ -458,6 +458,5 @@ Ext.onReady(function() {
 			items : [ coachGrid ]
 		});
 		win.show();
-
 	}
 });

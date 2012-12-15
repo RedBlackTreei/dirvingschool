@@ -3,8 +3,6 @@ package onlyfun.js.uitl;
 import java.util.ArrayList;
 import java.util.List;
 
-import onlyfun.js.model.Question;
-
 /**
  * 项目名称：DrivingSchool  <br/>
  * 类名称：Json  <br/>
