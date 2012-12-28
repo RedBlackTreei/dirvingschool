@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 public class Question {
 	private Long id;
 	private String title;
+	private int answer;
 	private Set<QuestionItem> items = new HashSet<QuestionItem>();
 
 	@Id
@@ -44,4 +45,19 @@ public class Question {
 	public void setItems(Set<QuestionItem> items) {
 		this.items = items;
 	}
+
+	/**
+	 * @return the answer
+	 */
+	public int getAnswer() {
+		return answer;
+	}
+
+	/**
+	 * @param answer the answer to set
+	 */
+	public void setAnswer(int answer) {
+		this.answer = answer;
+	}
+
 }

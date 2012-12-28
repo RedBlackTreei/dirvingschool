@@ -112,6 +112,14 @@
 		<action name="addCarAction" class="carAction" method="addCar">
 			<result type="json" />
 		</action>
+		
+		<!-- 题库管理 -->
+		<action name="getQuestionAction" class="questionAction" method="getQuestionList">
+			<result type="json" />
+		</action>
+		<action name="getItemAction" class="questionAction" method="getItemList">
+			<result type="json" />
+		</action>
 
 
 		<!-- 这里面的class不是指完整类路径，而是指在spring中定义的bean的名称 -->

@@ -1,6 +1,9 @@
 package onlyfun.js.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -11,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import onlyfun.js.dao.QuestionDao;
 import onlyfun.js.model.Question;
+import onlyfun.js.model.QuestionItem;
 
 /**
  * 题库管理
@@ -46,7 +50,8 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Transactional
 	public void deleteQuestionById(long questionId) {
-		Question question = this.getQuestionById(questionId);
+		Question question = (Question) this.hibernateTemplate.get(
+				Question.class, questionId);
 		this.hibernateTemplate.delete(question);
 
 	}
@@ -59,5 +64,16 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Transactional
 	public void addQuestion(Question question) {
 		this.hibernateTemplate.save(question);
+	}
+
+	@Override
+	public List<QuestionItem> getItemsById(long id) {
+		List<QuestionItem> list = new ArrayList<QuestionItem>();
+		Question question = (Question)this.hibernateTemplate.get(Question.class, id);
+		Set<QuestionItem> items = question.getItems();
+		for (QuestionItem questionItem : items) {
+			list.add(questionItem);
+		}
+		return list;
 	}
 }

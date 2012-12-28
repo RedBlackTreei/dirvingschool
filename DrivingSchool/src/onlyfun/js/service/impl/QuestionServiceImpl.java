@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import onlyfun.js.dao.QuestionDao;
 import onlyfun.js.model.Question;
+import onlyfun.js.model.QuestionItem;
 import onlyfun.js.service.QuestionService;
 
 /**
@@ -37,6 +38,12 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void deleteQuestioon(Question question) {
 		this.questionDao.deleteQuesion(question);
+	}
+
+	@Override
+	public List<QuestionItem> getItems(long id) {
+		List<QuestionItem> items = questionDao.getItemsById(id);
+		return items;
 	}
 
 	@Override

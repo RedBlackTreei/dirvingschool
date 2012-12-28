@@ -3,6 +3,7 @@ package onlyfun.js.dao;
 import java.util.List;
 
 import onlyfun.js.model.Question;
+import onlyfun.js.model.QuestionItem;
 
 /**
  * 题库管理
@@ -37,4 +38,9 @@ public interface QuestionDao {
 	 * 添加题目
 	 */
 	public void addQuestion(Question question);
+	
+	/**
+	 * 获取选项列表
+	 */
+	public List<QuestionItem> getItemsById(long id);
 }

@@ -5,9 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static org.junit.Assert.*;
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
 import onlyfun.js.dao.QuestionDao;
 import onlyfun.js.model.Question;
 import onlyfun.js.model.QuestionItem;
+import onlyfun.js.uitl.Json;
 
 import org.junit.After;
 import org.junit.Before;
@@ -73,6 +76,17 @@ public class TestQuestionDao {
 	public void testDeleteQuestionById() {
 		Question q = dao.getQuestionById(5);
 		dao.deleteQuesion(q);
+	}
+	
+	@Test
+	public void getItems(){
+		List<QuestionItem> items = dao.getItemsById(4);
+		JsonConfig config = Json.getConfig("question");
+		String json = JSONArray.fromObject(items, config).toString();
+		for (QuestionItem questionItem : items) {
+			System.out.println(questionItem.getItem());
+		}
+		System.out.println(json);
 	}
 
 	@After

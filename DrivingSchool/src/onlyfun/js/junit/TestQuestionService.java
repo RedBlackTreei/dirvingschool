@@ -2,11 +2,21 @@ package onlyfun.js.junit;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.processors.JsonValueProcessor;
+import net.sf.json.util.CycleDetectionStrategy;
+import net.sf.json.util.PropertyFilter;
 import onlyfun.js.model.Question;
+import onlyfun.js.model.QuestionItem;
 import onlyfun.js.service.QuestionService;
+import onlyfun.js.uitl.Json;
 
 import org.junit.After;
 import org.junit.Before;
@@ -34,17 +44,9 @@ public class TestQuestionService {
 	@Test
 	public void testGetQuestions() {
 		List<Question> q = this.questionService.getQuestions();
-		for (Question question : q) {
-			System.out.println(question.getTitle());
-//			Set<QuestionItem> items = question.getItems();
-//			for (Iterator iterator = items.iterator(); iterator.hasNext();) {
-//				QuestionItem questionItem = (QuestionItem) iterator.next();
-//				System.out.println(questionItem.getItem());
-//			}
-		}
-		String j = JSONObject.fromObject(q).toString();
-		
-		System.out.println(j);
+		JsonConfig config = Json.getConfig("items");
+		String json = JSONArray.fromObject(q, config).toString();
+		System.out.println(json);
 	}
 
 	@Test
