@@ -55,7 +55,6 @@ Ext.onReady(function() {
 		bodyPadding : 5,
 		width : document.body.clientWidth - 20,
 		layout : 'column',
-		renderTo : Ext.getBody(),
 		// Specifies that the items will now be arranged in columns
 		fieldDefaults : {
 			labelAlign : 'left',
@@ -89,6 +88,7 @@ Ext.onReady(function() {
 				selectionchange : function(model, records) {
 					if (records[0]) {
 						var id = records[0].get('id');
+						alert(id);
 						Ext.Ajax.request({
 							url : 'getItemAction',
 							params : {
@@ -104,8 +104,8 @@ Ext.onReady(function() {
 					}
 				}
 			}
-		} ]
+		} ],
+		renderTo:Ext.getBody()
 	});
-	var gridPanel = questionWithItems.child('gridpanel');
-	gridPanel.getSelectionModel().select(0);
+	questionWithItems.child('gridpanel').getSelectionModel().select(0);
 });
