@@ -102,10 +102,13 @@ Ext.onReady(function() {
 							}
 						});
 					}
+				},
+				viewready:function ( view, eOpts ) {
+					view.getSelectionModel().select(1);
 				}
 			}
 		} ],
-		renderTo:Ext.getBody()
+		renderTo : Ext.getBody()
 	});
-	questionWithItems.child('gridpanel').getSelectionModel().select(0);
+	 //questionWithItems.child('gridpanel').getSelectionModel().selectRow(0,false);
 });
